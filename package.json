@@ -1,0 +1,19 @@
+{
+  "name": "stsweng",
+  "version": "1.0.0",
+  "description": "Repository for STSWENG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raventeee/STSWENG.git"
+  },
+  "author": "Isaac Aquino, Francis Calimbas, Felice Cruz, Carl Dela Cruz, Jeffrey Gallenero, Raven Tee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raventeee/STSWENG/issues"
+  },
+  "homepage": "https://github.com/raventeee/STSWENG#readme"
+}
