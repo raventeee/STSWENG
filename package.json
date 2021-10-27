@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/raventeee/STSWENG/issues"
   },
-  "homepage": "https://github.com/raventeee/STSWENG#readme"
+  "homepage": "https://github.com/raventeee/STSWENG#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-validator": "^6.13.0"
+  }
 }
