@@ -11,7 +11,7 @@ const controller = {
   },
 
   postHome: (req, res) => {
-    const data = req.body.data
+    const data = req.body
     console.log('data in postHOme')
     console.log(data)
 
@@ -23,16 +23,18 @@ const controller = {
       db.collection('Customers').add(
       {
           customerId: String(size),
-          customerFirstName: data.customerFirstName,
-          customerLastName: data.customerLastName,
-          customerAddress: data.customerAddress,
-          customerMobile: data.customerMobile,
-          customerGender: data.customerGender,
-          customerEmail: data.customerEmail,
-          customerPassword: data.customerPassword,
-          customerCart: data.customerCart,
-          customerTransactions: data.customerTransactions
+          customerFirstName: data.firstName,
+          customerLastName: data.lastName,
+          customerAddress: data.address,
+          customerMobile: data.mobile,
+          customerGender: data.gender,
+          customerEmail: data.email,
+          customerPassword: data.password,
+          customerCart: [],
+          customerTransactions: []
       })
+    }).catch((err) => {
+      console.log(err)
     })
     res.send(true)
   }
