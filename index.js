@@ -13,6 +13,7 @@ const hbs = exphbs.create({
 })
 
 const routes = require('./routes/routes')
+const config = require('./config')
 const app = express()
 
 app.use(express.json())
@@ -27,9 +28,11 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/', routes)
 
 // error page
-app.use(() => {
+app.use((req, res, next) => {
   // res.render()
   res.send('ERROR')
 })
 
-app.listen()
+app.listen(config.port, () => {
+  console.log('Listening to localhost:8080')
+})

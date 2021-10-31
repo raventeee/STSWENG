@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "jetcomputershop",
+  "private_key_id": "216e7ab237ec4ab3ffd4dd716c27f1a834e9c008",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQDBDHWFpHD3txjV\nyyuyqecmt6U+wI245s5TDHCLL6yJphqNMlZqTC2KgoRr9Qcn5LWwQ6K+SP2BK5Jf\nzZoZflQyINQeTN73evhJgTJnSQttgC1OZWC2oA/K4TvK6tHG1wRtTykCxjL5uIrj\nUKZR4+gEIj/2H6/E5Dd5rHsFtAq4B73VdvnChhk9twcKk1WxqZCpjOCINTsHnFGc\n+3I5DflQ7F0TAPtwrH4lsutJtE/8WPmhf0d1HI8T3JQv4wVzqo6s4t0iI5G5Z9gJ\n9fOfz0tPk7KmNR9iD3OpIRTr1BNxwkhnpdh1i1aVsa4clS4iiIkX392XEyy9VX3B\nCFwS9k1TAgMBAAECggEAT3k1mIMODqzOCJXPs4nGo2XPHXpf3dMG9aGVY3eI7FH5\ndE9YzAH4baE1qswA2ieJtLrjcLrTwi2R4ObfnccoGkrxiFfVIsT5GimZ+nNTxQyT\nmkaZ/hT+62K2Ht905Qr3w5hnJcE6kxup8dLt5aCRj8IZ2tVIoyHgxLKBIuPv1bqB\nsYtqKAUPVyb8DhTqF8rhC7ro5hR/JJzu4XFrK3rUydmxfAXybdQxV9Cto6HJOlOI\np/E0oABJu3ubwqAXaQN/343/voUA0hU1qXGNqxk89CauAg5EwxlZF8py035NIEN/\nRtNS3oeODavirvv8Rci6nagc7EgC5wZRbF9QzfXiQQKBgQD70WGU35jAOvZ0OuRU\nk0sLKAqmbvTqxVoNAlNrLdrAXDw7Ppz0uvaChcFkKIpi1SdmX1lZtsCeXTY3Wh7I\nu1cnO2bDmW7jZ3czGvCd9hkFKjUcUeKdzJmTwcPQ47qRECb/PCydym9FK7//5RlC\ncw24lx1VLY7ol0qfFUu2EQiqmwKBgQDEQTeOOUevM84ESKJJwYZAXeiB0oeUYDQx\nHHTSWuJ0KFudZEemueYd0kBYNyUFq5uqmuetvdtpVWYdFsiBtcFZODHBIlYuf+IS\nhQ+DxVpZTLF/Dnv2lUniUm/gWI0v9W6BIUb2QfQ187Lms/xm8YKhE2Nu+q6Xu4gm\n3zIRLXlXqQKBgE2LA2aJmAsR3RSbkfYtST2NPgJURp0I2psI7VEi1KrJfE6uED0Y\nWZKFx7Ck/0BB7RkMIYKL0TKy92ACI1qivcq58wImfEwQb1dQY2nw/3FktugamxMG\njwA9+aOYjLng5HFSQVbxoGQHfd852BZrQX1nI0Q4fDpJZFQqhZ7yDd4jAoGABHMu\nHU1zMKfODg7PjziSILeAZCEv7c9Yn5xzkal55QRdP25cqY0hiJ+R0e4+Kqi/eNjW\nU/wwE21aSWKQ3VAPuEQr7KMorRk9OQpHVceNyuSQSb88VFUCPd18p+uaF/JKtSba\nAw9vyCFkdxKxsGvdeGWGJagNeWdJKQh6jCUp0TECf1JmrTuTf5lE7EABXABRrHby\nb146xBBESEKreDTxdkVHsjdM9EKVhTxm9o7P7oY7THun9DL+okQUfGOB+KNAFHSh\nXZelrevZQNBqD49iSdRerU1Zp2J+qzSvsvCgnlRyXfYsT3L0JPwmL1EkCWL8EloJ\nlwbfByfbu7MvOetp61I=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-cmb2q@jetcomputershop.iam.gserviceaccount.com",
+  "client_id": "102327643855726453952",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-cmb2q%40jetcomputershop.iam.gserviceaccount.com"
+}
