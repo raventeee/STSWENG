@@ -12,6 +12,11 @@ Repository for STSWENG
 - [express-handlebars](https://www.npmjs.com/package/express-handlebars)
 - [express-validator](https://www.npmjs.com/package/express-validator)
 - [validator](https://www.npmjs.com/package/validator)
+- [jest](https://jestjs.io/)
+- [cors](https://www.npmjs.com/package/cors)
+
+#### devDependencies
+- [standard](https://standardjs.com)
 
 ### Libraries
 - [Bootstrap](https://getbootstrap.com)
