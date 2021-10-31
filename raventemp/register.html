@@ -14,11 +14,9 @@
 			<br>
 			<input type = "text" name = "lastName" placeholder="last name">
 			<br>
-			<input type = "text" name = "email" placeholder="email address">
-			<br>
 			<input type = "text" name = "address" placeholder="delivery address">
 			<br>
-			+63<input type = "text" name = "mobile" placeholder="mobile number">
+			+639<input type = "text" name = "mobile" placeholder="mobile number">
 			<br>
 			<select name = "gender">
 				<option value="" selected disabled hidden>Choose here</option>
@@ -26,10 +24,14 @@
 				<option value = "Female">Female</option>
 				<option value ="Choose not to say">Choose not to say </option>
 			</select>
+			<br>
+			<input type = "text" name = "email" placeholder="email address">
+			<br>
+			<input type = "password" name = "password" placeholder="password">
+			<br>
 			<button id = "submitregister" type="submit">Submit</button>
 		</form>
 		<script id = "MainScript">
-
 			//to initialize db in this html file 
 			const firebaseConfig = {
 			  apiKey: "AIzaSyBwM6dBPAprKekuc_Y43pQ3zr20wDu66n4",
@@ -43,8 +45,6 @@
 			firebase.initializeApp(firebaseConfig);
 			const db = firebase.firestore();
 			db.settings({timestampsInSnapshots: true});
-
-
 			//register function
 			const form = document.querySelector("#register");
 			form.addEventListener('submit', (e)=>{
@@ -58,10 +58,13 @@
 						customerId: String(size),
 						customerFirstName: String(form.firstName.value),
 						customerLastName: String(form.lastName.value),
-						customerEmail: String(form.email.value),
-						cusotmerAddress: String(form.address.value),
+						customerAddress: String(form.address.value),
 						customerMobile: String("+639"+form.mobile.value),
-						customerGender: String(form.gender.value)
+						customerGender: String(form.gender.value),
+						customerEmail: String(form.email.value),
+						customerPassword: String(form.password.value),
+						customerCart: [],
+						customerTransactions:[]
 					});
 				});
 			})
