@@ -10,6 +10,6 @@ const app = express()
 app.set('views', path.join(__dirname, '../views'))
 
 app.get('/', controller.getHome)
-app.post('/', controller.postHome)
-
+app.post('/register', controller.postHome)
+app.post('/login', controller.postLogin)
 module.exports = app
