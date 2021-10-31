@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+	</head>
+	<body>
+
+		<form id="register">
+			<input type = "text" name = "firstName" placeholder="first name">
+			<br>
+			<input type = "text" name = "lastName" placeholder="last name">
+			<br>
+			<input type = "text" name = "email" placeholder="email address">
+			<br>
+			<input type = "text" name = "address" placeholder="delivery address">
+			<br>
+			+63<input type = "text" name = "mobile" placeholder="mobile number">
+			<br>
+			<select name = "gender">
+				<option value="" selected disabled hidden>Choose here</option>
+				<option value = "Male">Male</option>
+				<option value = "Female">Female</option>
+				<option value ="Choose not to say">Choose not to say </option>
+			</select>
+			<button id = "submitregister" type="submit">Submit</button>
+		</form>
+		<script id = "MainScript">
+
+			//to initialize db in this html file 
+			const firebaseConfig = {
+			  apiKey: "AIzaSyBwM6dBPAprKekuc_Y43pQ3zr20wDu66n4",
+			  authDomain: "jetcomputershop.firebaseapp.com",
+			  projectId: "jetcomputershop",
+			  storageBucket: "jetcomputershop.appspot.com",
+			  messagingSenderId: "119293400738",
+			  appId: "1:119293400738:web:7107070fe226e78ec5a9fb",
+			  measurementId: "G-J4MWM4KBD3"
+			};
+			firebase.initializeApp(firebaseConfig);
+			const db = firebase.firestore();
+			db.settings({timestampsInSnapshots: true});
+
+
+			//register function
+			const form = document.querySelector("#register");
+			form.addEventListener('submit', (e)=>{
+				e.preventDefault(); //to not submit
+				db.collection('Customers').get().then(snap => {
+				  	size = snap.size + 100000; //98 = 100098
+				  	size = size.toString(); //"100098"
+				  	size = size.substring(1,size.length); //"00098"
+					db.collection('Customers').add(
+					{
+						customerId: String(size),
+						customerFirstName: String(form.firstName.value),
+						customerLastName: String(form.lastName.value),
+						customerEmail: String(form.email.value),
+						cusotmerAddress: String(form.address.value),
+						customerMobile: String("+639"+form.mobile.value),
+						customerGender: String(form.gender.value)
+					});
+				});
+			})
+		</script>
+	</body>
+</html>
