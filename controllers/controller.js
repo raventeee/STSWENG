@@ -1,11 +1,32 @@
-const firebase = require('../db')
+const db = require('../db')
 
-const db = firebase.firestore()
+const firebase = db.firebase
+const getFirestore = db.getFirestore
+const collection = db.collection
+const getDoc = db.getDoc
+const getDocs = db.getDocs
+const addDoc = db.addDoc
 
 const controller = {
   getHome: (req, res, next) => {
     const data = {
       scripts: ['register&login']
+    }
+    try {
+      const docRef = addDoc(collection(getFirestore(firebase), 'Customers'), {
+        customerId: '2',
+        customerFirstName: 'data.firstName1',
+        customerLastName: 'data.lastName1',
+        customerAddress: 'data.address',
+        customerMobile: 'data.mobile',
+        customerGender: 'data.gender',
+        customerEmail: 'data.email',
+        customerPassword: 'data.password',
+        customerCart: [],
+        customerTransactions: []
+      })
+    } catch (e) {
+      console.error("Error adding document: ", e)
     }
     res.render('sample', data) // change later
   },
