@@ -2,23 +2,44 @@ $(document).ready(function () {
   $('#submitregister').click(function (event) {
     event.preventDefault()
     let data = {
-      firstName: $('#firstName').val(),
-      lastName: $('#lastName').val(),
-      address: $('#address').val(),
-      mobile: $('#mobile').val(),
-      gender: $('#gender').val(),
-      email: $('#email').val(),
-      password: $('#password').val(),
+      firstName: String($('#firstName').val()),
+      lastName: String($('#lastName').val()),
+      address: String($('#address').val()),
+      mobile: String($('#mobile').val()),
+      gender: String($('#gender').val()),
+      email: String($('#email').val()),
+      password: String($('#password').val()),
       cart: [],
       customerTransactions: []
     }
-    console.log('data in script:')
-    console.log(data)
-
+    $('#firstName').val("") 
+    $('#lastName').val("") 
+    $('#address').val("")
+    $('#mobile').val("") 
+    $('#gender').val("")
+    $('#email').val("") 
+    $('#password').val("")
+    $('#regstatus').html("register status: Registered!")
     $.ajax({
       type: 'POST',
       data: data,
-      url: '/'
+      url: '/register'
+    })
+  })
+
+  $('#submitlogin').click(function (event){
+    event.preventDefault()
+    let data = {
+      email: String($('#logemail').val()),
+      password: String($('#logpassword').val())
+    }
+    $('#logemail').val("")
+    $('#logpassword').val("")
+    $.ajax({
+      type: 'POST',
+      data: data,
+      url: '/login'
     })
   })
 })
+

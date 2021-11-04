@@ -33,14 +33,13 @@ const controller = {
 
   postHome: (req, res) => {
     const data = req.body
-    console.log('data in postHOme')
+    console.log('data in postHome')
     console.log(data)
 
     db.collection('Customers').get().then(snap => {
       size = snap.size + 100000; //98 = 100098
       size = size.toString(); //"100098"
       size = size.substring(1,size.length); //"00098"
-      
       db.collection('Customers').add(
       {
           customerId: String(size),
@@ -58,6 +57,43 @@ const controller = {
       console.log(err)
     })
     res.send(true)
+  },
+
+  postLogin: (req, res) =>
+  {
+    const data = req.body
+    console.log('data in postLogin')
+    console.log(data)
+    let loggedin = false;
+    let user = null;
+    db.collection('Customers').get().then((snapshot) => { //get the whole collection of users
+      snapshot.docs.forEach(doc =>{ //traverse through all documents in customer collection
+        if(doc.data().customerEmail == data.email) //check if current document matches the email in the form
+        {
+          if(doc.data().customerPassword == data.password) //if email matches, now check for password if matches
+          {
+            loggedin = true; //if email and password matches loggedin variable is now flagged as true
+            user = 
+            {
+              customerId : doc.data().customerId,
+              customerFirstName : doc.data().customerFirstName,
+              customerLastName : doc.data().customerLastName,
+              customerAddress : doc.data().customerAddress,
+              customerMobile : doc.data().customerMobile,
+              customerGender : doc.data().customerGender,
+              customerEmail : doc.data().customerEmail,
+              customerPassword : doc.data().customerPassword,
+              customerCart : doc.data().customerCart,
+              customerTransactions : doc.data().customerTransactions
+            } //user is now inflated with user data including customercart array and transactions array
+        }
+        }
+      });
+      //from this point forward, this is just temporary front end to set example on how to pull data from user object
+      console.log(user)
+      console.log(loggedin)
+      
+  });
   }
 }
 
