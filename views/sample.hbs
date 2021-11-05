@@ -1,5 +1,13 @@
 <div>
-    <form id="register">
+	<form action="/sample2" method="get">
+		<p id={{id}}>{{firstName}}</p>
+		<button type="submit">Move</button>
+	</form>
+
+	{{> sample_partial}}
+	
+    
+	<form id="register">
 			<input type = "text" name = "firstName" id="firstName" placeholder="first name">
 			<br>
 			<input type = "text" name = "lastName" id="lastName" placeholder="last name">
