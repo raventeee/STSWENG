@@ -6,57 +6,76 @@ const collection = db.collection
 const getDoc = db.getDoc
 const getDocs = db.getDocs
 const addDoc = db.addDoc
+const setDoc = db.setDoc
+const doc = db.doc
+const getAuth = db.getAuth
+const login = db.login
+const register = db.register
+const logout = db.logout
 
 const controller = {
   getHome: (req, res, next) => {
     const data = {
       scripts: ['register&login']
     }
-    try {
-      const docRef = addDoc(collection(getFirestore(firebase), 'Customers'), {
-        customerId: '2',
-        customerFirstName: 'data.firstName1',
-        customerLastName: 'data.lastName1',
-        customerAddress: 'data.address',
-        customerMobile: 'data.mobile',
-        customerGender: 'data.gender',
-        customerEmail: 'data.email',
-        customerPassword: 'data.password',
-        customerCart: [],
-        customerTransactions: []
-      })
-    } catch (e) {
-      console.error("Error adding document: ", e)
-    }
     res.render('sample', data) // change later
   },
 
-  postHome: (req, res) => {
-    const data = req.body
-    console.log('data in postHome')
-    console.log(data)
+  postHome: async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+    const data = {
+      customerFirstName: req.body.firstName,
+      customerLastName: req.body.lastName,
+      customerAddress: req.body.address,
+      customerMobile: req.body.mobile,
+      customerGender: req.body.gender,
+      customerEmail: email,
+      customerCart: [],
+      customerTransactions: []
+    }
+    const auth = getAuth(firebase)
+    register(auth, email, password).then((userCredential) => {
+      // Signed in
+      const user = userCredential.user
+      console.log('user')
+      console.log(user)
+      console.log('==user end==')
 
-    db.collection('Customers').get().then(snap => {
-      size = snap.size + 100000; //98 = 100098
-      size = size.toString(); //"100098"
-      size = size.substring(1,size.length); //"00098"
-      db.collection('Customers').add(
-      {
-          customerId: String(size),
-          customerFirstName: data.firstName,
-          customerLastName: data.lastName,
-          customerAddress: data.address,
-          customerMobile: data.mobile,
-          customerGender: data.gender,
-          customerEmail: data.email,
-          customerPassword: data.password,
-          customerCart: [],
-          customerTransactions: []
+      // process registration
+      getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
+        let snapSize = 0
+        let size = ''
+        size = snapSize + 100000
+        size = size.toString() // '100098'
+        size = size.substring(1, size.length) // '00098'
+        try {
+          setDoc(doc(getFirestore(firebase), 'Customers', email), data)
+        } catch (e) {
+          console.error('Error adding document ' + e)
+        }
+        querySnapshot.forEach((doc) => {
+          snapSize++
+        })
+      }).catch((error) => {
+        console.log('Error in getDocs' + error.message)
       })
-    }).catch((err) => {
-      console.log(err)
+      console.log('here')
+
+      // logout after
+      logout(auth).then(() => {
+        console.log('Logout successful')
+      }).catch(() => {
+        console.log('Logout failed')
+      })
+      // end
+    }).catch((error) => {
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log('error in catch')
+      console.log(errorCode)
+      console.log(errorMessage)
     })
-    res.send(true)
   },
 
   postLogin: (req, res) =>
