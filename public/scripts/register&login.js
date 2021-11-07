@@ -1,9 +1,15 @@
 $(document).ready(function () {
   $('#submitregister').click(function (event) {
     event.preventDefault()
+
+
+    let firstName = String($('#firstName').val())
+    firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1)
+    let lastName = String($('#lastName').val())
+    lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1)
     let data = {
-      firstName: String($('#firstName').val()),
-      lastName: String($('#lastName').val()),
+      firstName: firstName,
+      lastName: lastName,
       address: String($('#address').val()),
       mobile: String($('#mobile').val()),
       gender: String($('#gender').val()),

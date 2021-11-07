@@ -24,16 +24,6 @@ const controller = {
   postHome: async (req, res) => {
     const email = req.body.email
     const password = req.body.password
-    const data = {
-      customerFirstName: req.body.firstName,
-      customerLastName: req.body.lastName,
-      customerAddress: req.body.address,
-      customerMobile: req.body.mobile,
-      customerGender: req.body.gender,
-      customerEmail: email,
-      customerCart: [],
-      customerTransactions: []
-    }
     const auth = getAuth(firebase)
     register(auth, email, password).then((userCredential) => {
       // Signed in
@@ -44,11 +34,22 @@ const controller = {
 
       // process registration
       getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
-        let snapSize = 0
+        let snapSize = querySnapshot.size
         let size = ''
         size = snapSize + 100000
         size = size.toString() // '100098'
         size = size.substring(1, size.length) // '00098'
+        let data = {
+          customerId: size,
+          customerEmail:email,
+          customerFirstName: req.body.firstName,
+          customerLastName: req.body.lastName,
+          customerAddress: "Null",
+          customerMobile: req.body.mobile,
+          customerGender: req.body.gender,
+          customerCart: [],
+          customerTransactions: []
+        }
         try {
           setDoc(doc(getFirestore(firebase), 'Customers', email), data)
         } catch (e) {
@@ -82,14 +83,15 @@ const controller = {
   {
     const data = req.body
     console.log('data in postLogin')
-    console.log(data)
     let loggedin = false;
     let user = null;
-    db.collection('Customers').get().then((snapshot) => { //get the whole collection of users
-      snapshot.docs.forEach(doc =>{ //traverse through all documents in customer collection
-        if(doc.data().customerEmail == data.email) //check if current document matches the email in the form
-        {
-          if(doc.data().customerPassword == data.password) //if email matches, now check for password if matches
+    const auth = getAuth();
+    login(auth,data.email,data.password).then((userCredential) =>{ 
+      const authuser = userCredential.user
+      getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
+        querySnapshot.forEach(doc => {
+          console.log(doc.id)
+          if(doc.id == authuser.email) //check if current document matches the email in the form
           {
             loggedin = true; //if email and password matches loggedin variable is now flagged as true
             user = 
@@ -97,22 +99,26 @@ const controller = {
               customerId : doc.data().customerId,
               customerFirstName : doc.data().customerFirstName,
               customerLastName : doc.data().customerLastName,
+              customerEmail: doc.data().customerEmail,
               customerAddress : doc.data().customerAddress,
               customerMobile : doc.data().customerMobile,
               customerGender : doc.data().customerGender,
-              customerEmail : doc.data().customerEmail,
-              customerPassword : doc.data().customerPassword,
               customerCart : doc.data().customerCart,
               customerTransactions : doc.data().customerTransactions
             } //user is now inflated with user data including customercart array and transactions array
-        }
-        }
+          }
+        });
+        console.log(loggedin)
+        console.log(user)
       });
-      //from this point forward, this is just temporary front end to set example on how to pull data from user object
-      console.log(user)
-      console.log(loggedin)
-      
-  });
+    })  
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('error in catch')
+      console.log(errorCode)
+      console.log(errorMessage)
+    });
   }
 }
 
