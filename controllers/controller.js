@@ -39,12 +39,12 @@ const controller = {
         size = snapSize + 100000
         size = size.toString() // '100098'
         size = size.substring(1, size.length) // '00098'
-        let data = {
+        const data = {
           customerId: size,
-          customerEmail:email,
+          customerEmail: email,
           customerFirstName: req.body.firstName,
           customerLastName: req.body.lastName,
-          customerAddress: "Null",
+          customerAddress: 'Null',
           customerMobile: req.body.mobile,
           customerGender: req.body.gender,
           customerCart: [],
@@ -79,46 +79,42 @@ const controller = {
     })
   },
 
-  postLogin: (req, res) =>
-  {
+  postLogin: (req, res) => {
     const data = req.body
     console.log('data in postLogin')
-    let loggedin = false;
-    let user = null;
-    const auth = getAuth();
-    login(auth,data.email,data.password).then((userCredential) =>{ 
+    let loggedin = false
+    let user = null
+    const auth = getAuth()
+    login(auth, data.email, data.password).then((userCredential) => {
       const authuser = userCredential.user
       getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
         querySnapshot.forEach(doc => {
           console.log(doc.id)
-          if(doc.id == authuser.email) //check if current document matches the email in the form
-          {
-            loggedin = true; //if email and password matches loggedin variable is now flagged as true
-            user = 
-            {
-              customerId : doc.data().customerId,
-              customerFirstName : doc.data().customerFirstName,
-              customerLastName : doc.data().customerLastName,
+          if (doc.id === authuser.email) { // check if current document matches the email in the form
+            loggedin = true // if email and password matches loggedin variable is now flagged as true
+            user = {
+              customerId: doc.data().customerId,
+              customerFirstName: doc.data().customerFirstName,
+              customerLastName: doc.data().customerLastName,
               customerEmail: doc.data().customerEmail,
-              customerAddress : doc.data().customerAddress,
-              customerMobile : doc.data().customerMobile,
-              customerGender : doc.data().customerGender,
-              customerCart : doc.data().customerCart,
-              customerTransactions : doc.data().customerTransactions
-            } //user is now inflated with user data including customercart array and transactions array
+              customerAddress: doc.data().customerAddress,
+              customerMobile: doc.data().customerMobile,
+              customerGender: doc.data().customerGender,
+              customerCart: doc.data().customerCart,
+              customerTransactions: doc.data().customerTransactions
+            } // user is now inflated with user data including customercart array and transactions array
           }
-        });
+        })
         console.log(loggedin)
         console.log(user)
-      });
-    })  
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      })
+    }).catch((error) => {
+      const errorCode = error.code
+      const errorMessage = error.message
       console.log('error in catch')
       console.log(errorCode)
       console.log(errorMessage)
-    });
+    })
   }
 }
 
