@@ -28,9 +28,9 @@ const controller = {
     register(auth, email, password).then((userCredential) => {
       // Signed in
       const user = userCredential.user
-      console.log('user')
-      console.log(user)
-      console.log('==user end==')
+      // console.log('user')
+      // console.log(user)
+      // console.log('==user end==')
 
       // process registration
       getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
@@ -61,7 +61,7 @@ const controller = {
       }).catch((error) => {
         console.log('Error in getDocs' + error.message)
       })
-      console.log('here')
+      // console.log('here')
 
       // logout after
       logout(auth).then(() => {
@@ -73,15 +73,15 @@ const controller = {
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
-      console.log('error in catch')
-      console.log(errorCode)
-      console.log(errorMessage)
+      // console.log('error in catch')
+      // console.log(errorCode)
+      // console.log(errorMessage)
     })
   },
 
-  postLogin: (req, res) => {
+  postLogin: async (req, res) => {
     const data = req.body
-    console.log('data in postLogin')
+    // console.log('data in postLogin')
     let loggedin = false
     let user = null
     const auth = getAuth()
@@ -89,7 +89,7 @@ const controller = {
       const authuser = userCredential.user
       getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
         querySnapshot.forEach(doc => {
-          console.log(doc.id)
+          // console.log(doc.id)
           if (doc.id === authuser.email) { // check if current document matches the email in the form
             loggedin = true // if email and password matches loggedin variable is now flagged as true
             user = {
@@ -105,8 +105,8 @@ const controller = {
             } // user is now inflated with user data including customercart array and transactions array
           }
         })
-        console.log(loggedin)
-        console.log(user)
+        // console.log(loggedin)
+        // console.log(user)
       })
     }).catch((error) => {
       const errorCode = error.code
