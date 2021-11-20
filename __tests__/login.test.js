@@ -29,4 +29,30 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     // Assert
     return expect(output).rejects.toBeDefined()
   })
+
+  test('Logging in email: \'sss@gmail.com\', password: \'000\'', () => {
+    // Arrange
+    const person = {
+      email: 'sss@gmail.com',
+      password: '000'
+    }
+    const auth = getAuth()
+    // Act
+    const output = testLogin(auth, person.email, person.password)
+    // Assert
+    return expect(output).rejects.toBeDefined()
+  })
+
+  test('Logging in email: \'uuu@gmail.com\', password: \'878\'', () => {
+    // Arrange
+    const person = {
+      email: 'uuu@gmail.com',
+      password: '878'
+    }
+    const auth = getAuth()
+    // Act
+    const output = testLogin(auth, person.email, person.password)
+    // Assert
+    return expect(output).rejects.toBeDefined()
+  })
 })

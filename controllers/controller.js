@@ -1,4 +1,5 @@
 const db = require('../db')
+const customer = require('../models/customer')
 
 const firebase = db.firebase
 const getFirestore = db.getFirestore
@@ -39,17 +40,16 @@ const controller = {
         size = snapSize + 100000
         size = size.toString() // '100098'
         size = size.substring(1, size.length) // '00098'
-        const data = {
-          customerId: size,
-          customerEmail: email,
-          customerFirstName: req.body.firstName,
-          customerLastName: req.body.lastName,
-          customerAddress: 'Null',
-          customerMobile: req.body.mobile,
-          customerGender: req.body.gender,
-          customerCart: [],
-          customerTransactions: []
-        }
+        const data = {}
+        data[customer.id] = size
+        data[customer.email] = email
+        data[customer.firstName] = req.body.firstName
+        data[customer.lastName] = req.body.lastName
+        data[customer.address] = 'Null'
+        data[customer.mobile] = req.body.mobile
+        data[customer.gender] = req.body.gender
+        data[customer.cart] = []
+        data[customer.transactions] = []
         try {
           setDoc(doc(getFirestore(firebase), 'Customers', email), data)
         } catch (e) {
@@ -83,7 +83,7 @@ const controller = {
     const data = req.body
     // console.log('data in postLogin')
     let loggedin = false
-    let user = null
+    let user = {}
     const auth = getAuth()
     login(auth, data.email, data.password).then((userCredential) => {
       const authuser = userCredential.user
@@ -92,17 +92,16 @@ const controller = {
           // console.log(doc.id)
           if (doc.id === authuser.email) { // check if current document matches the email in the form
             loggedin = true // if email and password matches loggedin variable is now flagged as true
-            user = {
-              customerId: doc.data().customerId,
-              customerFirstName: doc.data().customerFirstName,
-              customerLastName: doc.data().customerLastName,
-              customerEmail: doc.data().customerEmail,
-              customerAddress: doc.data().customerAddress,
-              customerMobile: doc.data().customerMobile,
-              customerGender: doc.data().customerGender,
-              customerCart: doc.data().customerCart,
-              customerTransactions: doc.data().customerTransactions
-            } // user is now inflated with user data including customercart array and transactions array
+            // user is now inflated with user data including customercart array and transactions array
+            user[customer.id] = doc.data().customerId
+            user[customer.firstName] = doc.data().customerFirstName
+            user[customer.lastName] = doc.data().customerLastName
+            user[customer.email] = doc.data().customerEmail
+            user[customer.address] = doc.data().customerAddress
+            user[customer.mobile] = doc.data().customerMobile
+            user[customer.gender] = doc.data().customerGender
+            user[customer.cart] = doc.data().customerCart
+            user[customer.transactions] = doc.data().customerTransactions
           }
         })
         // console.log(loggedin)
