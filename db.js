@@ -111,11 +111,15 @@ const db = {
   /**
    * This function gets a document in a collection given a set of conditions
    * @param {string} col - the string collection name
-   * @param {object} condition - 
+   * @param {string} id - the string id of the document to be retrieved
    * @param {function} callback - the function to be executed after getting all documents
    */
-  getOne: (col, condition, callback = null) => {
-
+  getOne: (col, id, callback = null) => {
+    getDoc(doc(getFirestore(firebase), col, id)).then((docSnapshot) => {
+      callback(docSnapshot.data())
+    }).catch(() => {
+      callback(false)
+    })
   },
   /**
    * This function gets all documents in a collection
@@ -129,6 +133,20 @@ const db = {
         records.push(doc.data())
       })
       callback(records)
+    })
+  },
+  /**
+   * This function updates a document given the collection and id
+   * @param {string} col - the string collection name
+   * @param {string} id - the string document id
+   * @param {object} data - the object containing document attribute to update
+   * @param {function} callback - the function to executed after updating a document
+   */
+  updateOne: (col, id, data, callback = null) => {
+    updateDoc(doc(getFirestore(firebase), col, id), data).then(() => {
+      callback(true)
+    }).catch(() => {
+
     })
   },
   getAuth: auth,

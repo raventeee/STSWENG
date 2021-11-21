@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const cartController = require('../controllers/cartController')
 
 // include controllers here
 const controller = require('../controllers/controller')
@@ -14,4 +15,7 @@ app.post('/register', controller.postHome)
 app.post('/login', controller.postLogin)
 app.get('/home', controller.getHome2)
 app.get('/logout', controller.logOut)
+
+app.post('/addCart', cartController.addToCart)
+
 module.exports = app
