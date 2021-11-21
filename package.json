@@ -7,7 +7,7 @@
   "description": "Repository for STSWENG",
   "main": "index.js",
   "scripts": {
-    "test": "jest --color",
+    "test": "jest --silent --color",
     "start": "node index.js",
     "dev": "nodemon index.js"
   },

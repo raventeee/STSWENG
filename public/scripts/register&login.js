@@ -2,7 +2,6 @@ $(document).ready(function () {
   $('#submitregister').click(function (event) {
     event.preventDefault()
 
-
     let firstName = String($('#firstName').val())
     firstName = firstName.charAt(0).toUpperCase() + firstName.slice(1)
     let lastName = String($('#lastName').val())
@@ -18,34 +17,49 @@ $(document).ready(function () {
       cart: [],
       customerTransactions: []
     }
-    $('#firstName').val("") 
-    $('#lastName').val("") 
-    $('#address').val("")
-    $('#mobile').val("") 
-    $('#gender').val("")
-    $('#email').val("") 
-    $('#password').val("")
-    $('#regstatus').html("register status: Registered!")
+    $('#firstName').val('')
+    $('#lastName').val('')
+    $('#address').val('')
+    $('#mobile').val('')
+    $('#gender').val('')
+    $('#email').val('')
+    $('#password').val('')
+    $('#regstatus').html('register status: Registered!')
     $.ajax({
       type: 'POST',
       data: data,
-      url: '/register'
+      url: '/register',
+      success: function (result) {
+        if (result) {
+          location.href = '/home'
+        } else {
+          alert('err')
+        }
+      }
     })
   })
 
-  $('#submitlogin').click(function (event){
+  $('#submitlogin').click(function (event) {
     event.preventDefault()
     let data = {
       email: String($('#logemail').val()),
       password: String($('#logpassword').val())
     }
-    $('#logemail').val("")
-    $('#logpassword').val("")
+    $('#logemail').val('')
+    $('#logpassword').val('')
     $.ajax({
       type: 'POST',
       data: data,
-      url: '/login'
+      url: '/login',
+      success: function (result) {
+        console.log(result)
+        if (result) {
+          alert(result)
+          location.href = '/home'
+        } else {
+          alert('err')
+        }
+      }
     })
   })
 })
-

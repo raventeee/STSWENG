@@ -28,11 +28,12 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/', routes)
 
 // error page
-app.use((req, res, next) => {
-  // res.render()
-  res.send('ERROR')
+app.use((req, res) => {
+  res.render('error')
 })
 
 app.listen(config.port, config.host, () => {
   console.log('Listening to ' + config.host + ':' + config.port)
 })
+
+module.exports = app

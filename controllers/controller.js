@@ -1,118 +1,130 @@
 const db = require('../db')
 const customer = require('../models/customer')
 
-const firebase = db.firebase
-const getFirestore = db.getFirestore
-const collection = db.collection
-const getDoc = db.getDoc
-const getDocs = db.getDocs
-const addDoc = db.addDoc
-const setDoc = db.setDoc
-const doc = db.doc
-const getAuth = db.getAuth
-const login = db.login
-const register = db.register
-const logout = db.logout
-
 const controller = {
-  getHome: (req, res, next) => {
+  /**
+   * This function renders the home page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  getHome: (req, res) => {
     const data = {
       scripts: ['register&login']
     }
+    console.log('======================================================')
+    // console.log(db.getAuth.currentUser)
+    db.checkSession(function (result) {
+      console.log('checkSession = ' + result)
+      if (result !== false || result !== null) {
+        console.log(result)
+      }
+    })
     res.render('sample', data) // change later
   },
-
-  postHome: async (req, res) => {
+  getHome2: (req, res) => {
+    console.log('======================================================')
+    // console.log(db.getAuth.currentUser)
+    let data = {
+      name: 'francis',
+      age: 21
+    }
+    res.render('home', data)
+  },
+  /**
+   * This function registers a new customer
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  postHome: (req, res) => {
     const email = req.body.email
     const password = req.body.password
-    const auth = getAuth(firebase)
-    register(auth, email, password).then((userCredential) => {
-      // Signed in
-      const user = userCredential.user
-      // console.log('user')
-      // console.log(user)
-      // console.log('==user end==')
-
-      // process registration
-      getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
-        let snapSize = querySnapshot.size
-        let size = ''
-        size = snapSize + 100000
-        size = size.toString() // '100098'
-        size = size.substring(1, size.length) // '00098'
-        const data = {}
-        data[customer.id] = size
-        data[customer.email] = email
-        data[customer.firstName] = req.body.firstName
-        data[customer.lastName] = req.body.lastName
-        data[customer.address] = 'Null'
-        data[customer.mobile] = req.body.mobile
-        data[customer.gender] = req.body.gender
-        data[customer.cart] = []
-        data[customer.transactions] = []
-        try {
-          setDoc(doc(getFirestore(firebase), 'Customers', email), data)
-        } catch (e) {
-          console.error('Error adding document ' + e)
-        }
-        querySnapshot.forEach((doc) => {
-          snapSize++
+    const data = {
+      email: email,
+      password: password
+    }
+    db.addAuth(data, function (result) {
+      if (result != null) {
+        const size = result.size
+        const user = {}
+        user[customer.id] = size
+        user[customer.email] = email
+        user[customer.firstName] = req.body.firstName
+        user[customer.lastName] = req.body.lastName
+        user[customer.address] = 'Null'
+        user[customer.mobile] = req.body.mobile
+        user[customer.gender] = req.body.gender
+        user[customer.cart] = []
+        user[customer.transactions] = []
+        // insert customer to Customers collection
+        db.insert('Customers', email, user, function (result) {
+          if (result) {
+            res.send(true)
+          } else {
+            res.send(false)
+          }
         })
-      }).catch((error) => {
-        console.log('Error in getDocs' + error.message)
-      })
-      // console.log('here')
-
-      // logout after
-      logout(auth).then(() => {
-        console.log('Logout successful')
-      }).catch(() => {
-        console.log('Logout failed')
-      })
-      // end
-    }).catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      // console.log('error in catch')
-      // console.log(errorCode)
-      // console.log(errorMessage)
+      } else {
+        res.send(false)
+      }
     })
   },
 
-  postLogin: async (req, res) => {
+  /**
+   * This function logs in a customer
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  postLogin: (req, res) => {
     const data = req.body
     // console.log('data in postLogin')
     let loggedin = false
-    let user = {}
-    const auth = getAuth()
-    login(auth, data.email, data.password).then((userCredential) => {
-      const authuser = userCredential.user
-      getDocs(collection(getFirestore(firebase), 'Customers')).then((querySnapshot) => {
-        querySnapshot.forEach(doc => {
-          // console.log(doc.id)
-          if (doc.id === authuser.email) { // check if current document matches the email in the form
-            loggedin = true // if email and password matches loggedin variable is now flagged as true
-            // user is now inflated with user data including customercart array and transactions array
-            user[customer.id] = doc.data().customerId
-            user[customer.firstName] = doc.data().customerFirstName
-            user[customer.lastName] = doc.data().customerLastName
-            user[customer.email] = doc.data().customerEmail
-            user[customer.address] = doc.data().customerAddress
-            user[customer.mobile] = doc.data().customerMobile
-            user[customer.gender] = doc.data().customerGender
-            user[customer.cart] = doc.data().customerCart
-            user[customer.transactions] = doc.data().customerTransactions
+    let records = []
+    const user = {}
+    db.authLogin(data, function (result) {
+      // result is authuser
+      if (result != null) {
+        const email = result.email
+        db.getAll('Customers', function (result) {
+          if (result != null) {
+            let flag = false
+            let i = 0
+            while (!flag) {
+              if (email === result[i].customerEmail) {
+                user[customer.id] = result[i].customerId
+                user[customer.firstName] = result[i].customerFirstName
+                user[customer.lastName] = result[i].customerLastName
+                user[customer.email] = result[i].customerEmail
+                user[customer.address] = result[i].customerAddress
+                user[customer.mobile] = result[i].customerMobile
+                user[customer.gender] = result[i].customerGender
+                user[customer.cart] = result[i].customerCart
+                user[customer.transactions] = result[i].customerTransactions
+                flag = true
+              }
+              i++
+            }
+            console.log('user')
+            console.log(user)
+            res.send(true)
+          } else {
+            res.send(false)
           }
         })
-        // console.log(loggedin)
-        // console.log(user)
-      })
-    }).catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      console.log('error in catch')
-      console.log(errorCode)
-      console.log(errorMessage)
+      } else {
+        res.send(false)
+      }
+    })
+  },
+  /**
+   * This function logs out the current user
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  logOut: (req, res) => {
+    db.logOut(db.getAuth()).then(() => {
+      res.render('sample')
+    }).catch(() => {
+      res.render('error')
     })
   }
 }
