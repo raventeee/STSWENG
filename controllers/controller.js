@@ -12,18 +12,18 @@ const controller = {
       scripts: ['register&login']
     }
     console.log('======================================================')
-    // console.log(db.getAuth.currentUser)
-    db.checkSession(function (result) {
-      console.log('checkSession = ' + result)
-      if (result !== false || result !== null) {
-        console.log(result)
-      }
-    })
+    console.log(db.getAuth.currentUser)
+    // db.checkSession(function (result) {
+    //   console.log('checkSession = ' + result)
+    //   if (result !== false || result !== null) {
+    //     console.log(result)
+    //   }
+    // })
     res.render('sample', data) // change later
   },
   getHome2: (req, res) => {
     console.log('======================================================')
-    // console.log(db.getAuth.currentUser)
+    console.log(db.getAuth.currentUser)
     let data = {
       name: 'francis',
       age: 21
