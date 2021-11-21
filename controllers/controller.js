@@ -13,6 +13,11 @@ const controller = {
     }
     console.log('======================================================')
     console.log(db.getAuth.currentUser)
+    if (db.getAuth.currentUser != null) {
+      data.status = 'Logged in'
+    } else {
+      data.status = 'Not logged in'
+    }
     // db.checkSession(function (result) {
     //   console.log('checkSession = ' + result)
     //   if (result !== false || result !== null) {
@@ -121,8 +126,9 @@ const controller = {
    * @param res - the result to be sent out after processing the request
    */
   logOut: (req, res) => {
-    db.logOut(db.getAuth()).then(() => {
-      res.render('sample')
+    db.logOut(db.getAuth).then(() => {
+      console.log('logged out')
+      res.redirect('/')
     }).catch(() => {
       res.render('error')
     })

@@ -37,6 +37,11 @@
 			<br>
 			<button id = "submitlogin" type="submit">login</button>
 	</form>
-	<p id ="status">status</p>
+
+	<div id='status_div' data-status="{{status}}">
+		<p id ="status">status: {{status}}</p>
+	</div>
+
+	<a href='/logout'><button id="logout">Logout</button></a>
 
 </div>

@@ -55,7 +55,7 @@ $(document).ready(function () {
         console.log(result)
         if (result) {
           alert(result)
-          location.href = '/home'
+          location.href = '/'
         } else {
           alert('err')
         }

@@ -114,7 +114,7 @@ const db = {
    * @param {object} condition - 
    * @param {function} callback - the function to be executed after getting all documents
    */
-  getOne: (col, condition, callback) => {
+  getOne: (col, condition, callback = null) => {
 
   },
   /**
@@ -122,7 +122,7 @@ const db = {
    * @param {string} col - the string collection name
    * @param {function} callback - the function to be executed after getting all documents
    */
-  getAll: (col, callback) => {
+  getAll: (col, callback = null) => {
     const records = []
     getDocs(collection(getFirestore(firebase), col)).then((querySnapshot) => {
       querySnapshot.forEach(doc => {
