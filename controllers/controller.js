@@ -9,40 +9,51 @@ const controller = {
    */
   getHome: (req, res) => {
     const data = {
-      scripts: ['register&login']
+      styles: ['style'],
+      scripts: ['addCart']
     }
-    console.log('======================================================')
-    console.log(db.getAuth.currentUser)
+    // checks session, if there is a current logged-in user
     if (db.getAuth.currentUser != null) {
-      data.status = 'Logged in'
-    } else {
-      data.status = 'Not logged in'
-    }
-    // db.checkSession(function (result) {
-    //   console.log('checkSession = ' + result)
-    //   if (result !== false || result !== null) {
-    //     console.log(result)
-    //   }
-    // })
-    res.render('sample', data) // change later
-  },
-  getHome2: (req, res) => {
-    console.log('======================================================')
-    console.log(db.getAuth.currentUser)
-    let data = {
-      styles: ['style']
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
     }
     res.render('home', data)
   },
-  getLogin: (req, res) => {
-    res.render('login')
-  },
 
+  /**
+   * This function renders the login page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  getLogin: (req, res) => {
+    const data = {
+      scripts: ['login']
+    }
+    console.log(db.getAuth.currentUser)
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser !== null) {
+      res.redirect('/')
+    } else {
+      res.render('login', data)
+    }
+  },
+  /**
+   * This function renders the page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
   getRegister: (req, res) => {
-    let data = {
+    const data = {
       styles: ['style']
     }
-    res.render('register', data)
+    console.log(db.getAuth.currentUser)
+    // checks session, if there is a currently logged-in user
+    if (db.getAuth.currentUser !== null) {
+      res.redirect('/')
+    } else {
+      res.render('register', data)
+    }
   },
   /**
    * This function registers a new customer
@@ -90,9 +101,6 @@ const controller = {
    */
   postLogin: (req, res) => {
     const data = req.body
-    // console.log('data in postLogin')
-    let loggedin = false
-    let records = []
     const user = {}
     db.authLogin(data, function (result) {
       // result is authuser
@@ -117,8 +125,6 @@ const controller = {
               }
               i++
             }
-            console.log('user')
-            console.log(user)
             res.send(true)
           } else {
             res.send(false)

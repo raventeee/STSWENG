@@ -1,7 +1,7 @@
 <nav class="d-flex navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid d-flex">
         
-        <a class="navbar-brand text-start mx-auto fs-1 display-1" href="#">Jet's Game Store</a>
+        <a class="navbar-brand text-start mx-auto fs-1 display-1" href="/">Jet's Game Store</a>
         
         <div class="container-fluid d-flex mt-3" style="width: 700px;">
 
@@ -13,8 +13,8 @@
             </div>
             
             {{!-- if logged in or not --}}
-            {{#if user}}
-                <div class="ms-3">
+            {{#if this}}
+                <div class="ms-3" id="current_user" data-email="francis@gmail.com">
                     <button class="btn btn-secondary btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
                 </div>
 
