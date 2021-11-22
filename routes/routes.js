@@ -16,6 +16,7 @@ app.post('/login', controller.postLogin)
 // app.get('/home', controller.getHome2)
 app.get('/logout', controller.logOut)
 app.get('/login', controller.getLogin)
+app.get('/register', controller.getRegister)
 
 app.post('/addCart', cartController.addToCart)
 

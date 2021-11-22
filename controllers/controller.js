@@ -37,6 +37,13 @@ const controller = {
   getLogin: (req, res) => {
     res.render('login')
   },
+
+  getRegister: (req, res) => {
+    let data = {
+      styles: ['style']
+    }
+    res.render('register', data)
+  },
   /**
    * This function registers a new customer
    * @param req - the incoming request containing either the query or body

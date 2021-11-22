@@ -6,3 +6,13 @@
 html {
     background-color: #212529;
 }
+
+.accordion {
+    width: 800px;
+}
+
+.card-img-top {
+width: 100%;
+height: 30vh;
+object-fit: contain;
+}
