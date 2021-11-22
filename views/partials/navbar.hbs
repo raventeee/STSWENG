@@ -1,0 +1,43 @@
+<nav class="d-flex navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid d-flex">
+        
+        <a class="navbar-brand text-start mx-auto fs-1 display-1" href="#">Jet's Game Store</a>
+        
+        <div class="container-fluid d-flex mt-3" style="width: 700px;">
+
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            {{!-- if logged in or not --}}
+            {{#if user}}
+                <div class="ms-3">
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-user"></i></button>
+                </div>
+
+                <div class="ms-3">
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                </div>
+
+            {{else}}
+                <div class="ms-3">
+                    <button class="btn btn-secondary btn-sm btn-navbar" type="submit">Log in</button>
+                </div>
+
+                <div class="ms-3">
+                    <button class="btn btn-secondary btn-sm btn-navbar" type="submit">Sign up</button>
+                </div>
+            {{/if}}
+            
+
+            <!-- burger icon -->
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </div>
+</nav>

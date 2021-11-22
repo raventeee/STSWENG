@@ -1,5 +1,346 @@
-<div>
-  <h1>Home Page</h1>
-  {{customerFirstName}}
-  {{customerEmail}}
-</div>
+    <!-- FIRST ROW NAVBAR START -->
+    {{>navbar user}}
+    <!-- FIRST ROW NAVBAR END -->
+
+    <!-- SECOND ROW NAVBAR START -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+                <ul class="navbar-nav d-flex mx-auto">
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">HOME</a>
+                    </li>
+
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">PS5</a>
+                    </li>
+
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">PS4</a>
+                    </li>
+
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">XBOX</a>
+                    </li>
+
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">NSW</a>
+                    </li>
+
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">PC/MAC</a>
+                    </li>
+                    
+                    <li class="nav-item px-5">
+                        <a class="nav-link" href="#">ORDER STATUS</a>
+                    </li>
+
+                    <!-- for dropdown in navbar -->
+                    <!-- <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                    </li> -->
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+    <!-- SECOND ROW NAVBAR END -->
+
+    <!-- FEATURED GAMES START -->
+    <div class="container-large text-center my-4">
+        <h2>Featured Products</h2>
+    </div>
+    <section id="featured">
+        <div class="container-large mb-2">
+            <div class="container">
+              <div class="row g-3">
+
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/gtaV.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">Grand Theft Auto V</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/nba2k21.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/nba2k21.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+              </div>
+          </div>
+          </div>
+    </section>
+    <!-- FEATURED GAMES END -->
+
+    <!-- LATEST RELEASES START -->
+    <div class="text-center mt-5 mb-4">
+        <h2>New Releases</h2>
+    </div>
+    <section id="new-releases">
+        <div class="container-large">
+            <div class="container">
+              <div class="row g-3">
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/gtaV.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">Grand Theft Auto V</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/nba2k21.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/nba2k21.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                      <img class ="card-img-top" src="/assets/re7.jpg" alt="Grand Theft Auto V">
+                      <div class="card-body">
+                        <h5 class="card-title">Php 1500</h5>
+                        <p class="card-text">NBA 2K21</p>
+                        <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-3">Add to Cart</a>
+                      </div>
+                    </div>
+                  </div>
+  
+              </div>
+  
+            </div>
+          </div>
+    </section>
+    <!-- LATEST RELEASES END -->
+
+    <!-- FAQ START -->
+    <h1 class="text-center mt-5">Frequently Asked Questions</h1>
+
+    <!-- ACCORDION START -->
+    <div class="accordion mx-auto mt-3 mb-5" id="accordionExample">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Do I need an account to buy/order?
+                </button>
+            </h2>
+
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    How do I create an account?
+                </button>
+            </h2>
+
+            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    I already have an account, how do I order?
+                </button>
+            </h2>
+
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    How do I check my order status?
+                </button>
+            </h2>
+
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    What are your shop's accepted mode of payments?
+                </button>
+            </h2>
+
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Where are you located?
+                </button>
+            </h2>
+
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    How long will it take for me to receive my order?
+                </button>
+            </h2>
+
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Do you accept returns/exchanges?
+                </button>
+            </h2>
+
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight">
+                <div class="accordion-body">
+                    <strong>Details</strong>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    <!-- ACCORDION END -->
+    <!-- FAQ END -->
+
+    <!-- FOOTER START -->
+    
+    <!-- FOOTER END -->

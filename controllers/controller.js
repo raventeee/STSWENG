@@ -30,8 +30,7 @@ const controller = {
     console.log('======================================================')
     console.log(db.getAuth.currentUser)
     let data = {
-      name: 'francis',
-      age: 21
+      styles: ['styles']
     }
     res.render('home', data)
   },
