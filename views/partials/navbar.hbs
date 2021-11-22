@@ -8,27 +8,27 @@
             <div class="input-group mb-2">
                 <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="bi bi-search"></i></button>
                 </div>
             </div>
             
             {{!-- if logged in or not --}}
             {{#if user}}
                 <div class="ms-3">
-                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-user"></i></button>
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
                 </div>
 
                 <div class="ms-3">
-                    <button class="btn btn-secondary btn-lg" type="submit"><i class="fas fa-shopping-cart"></i></button>
+                    <button class="btn btn-secondary btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
                 </div>
 
             {{else}}
                 <div class="ms-3">
-                    <button class="btn btn-secondary btn-sm btn-navbar" type="submit">Log in</button>
+                    <a href="/login"><button class="btn btn-secondary btn-sm btn-navbar">Log in</button></a>
                 </div>
 
                 <div class="ms-3">
-                    <button class="btn btn-secondary btn-sm btn-navbar" type="submit">Sign up</button>
+                    <a href="/signup"><button class="btn btn-secondary btn-sm btn-navbar">Sign up</button></a>
                 </div>
             {{/if}}
             

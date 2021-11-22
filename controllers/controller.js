@@ -30,9 +30,12 @@ const controller = {
     console.log('======================================================')
     console.log(db.getAuth.currentUser)
     let data = {
-      styles: ['styles']
+      styles: ['style']
     }
     res.render('home', data)
+  },
+  getLogin: (req, res) => {
+    res.render('login')
   },
   /**
    * This function registers a new customer
