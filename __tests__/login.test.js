@@ -34,7 +34,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)
@@ -55,7 +55,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)
@@ -76,7 +76,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)
