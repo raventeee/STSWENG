@@ -7,12 +7,20 @@ $(document).ready(function () {
       if (!$('#input_email').hasClass('is-invalid')) {
         $('#input_email').addClass('is-invalid')
       }
+    } else {
+      if ($('#input_email').hasClass('is-invalid')) {
+        $('#input_email').removeClass('is-invalid')
+      }
     }
 
     if (validator.isEmpty(password)) {
       valid = false
       if (!$('#input_password').hasClass('is-invalid')) {
         $('#input_password').addClass('is-invalid')
+      }
+    } else {
+      if ($('#input_password').hasClass('is-invalid')) {
+        $('#input_password').removeClass('is-invalid')
       }
     }
     alert(valid)
