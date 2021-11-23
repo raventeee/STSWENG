@@ -4,6 +4,7 @@ const path = require('path')
 // include controllers here
 const controller = require('../controllers/controller')
 const cartController = require('../controllers/cartController')
+const adminController = require('../controllers/adminController')
 
 // add other controllers above this line^
 
@@ -15,10 +16,12 @@ app.get('/', controller.getHome)
 app.get('/logout', controller.logOut)
 app.get('/login', controller.getLogin)
 app.get('/register', controller.getRegister)
+app.get('/admin', adminController.postLogin)
 
 // POST requests
 app.post('/register', controller.postHome)
 app.post('/postLogin', controller.postLogin)
 app.post('/addCart', cartController.addToCart)
+
 
 module.exports = app

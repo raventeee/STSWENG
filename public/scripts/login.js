@@ -37,8 +37,12 @@ $(document).ready(function () {
         data: data,
         url: '/postLogin',
         success: function (result) {
-          if (result) {
+          if (result == '1') {
             location.href = '/'
+          }
+          else if (result == '0')
+          {
+            location.href = '/admin'
           } else {
             alert('Invalid credentials')
             // remove class is-invalid if exists
