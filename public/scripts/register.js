@@ -50,6 +50,7 @@ $(document).ready(function () {
         validatePhoneNumber(phoneNumber);
     })
 
+
     $("#phone_number").on('keypress', function (evt) {
         var charCode = (evt.which) ? evt.which : evt.keyCode;
         if (charCode != 46 && charCode > 31
@@ -121,6 +122,10 @@ $(document).ready(function () {
     });
 
     $('#reset_btn').click(function () {
+        resetFields();
+    })
+
+    $('#register').click(function(){
         resetFields();
     })
 
