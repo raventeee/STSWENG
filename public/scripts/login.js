@@ -61,4 +61,29 @@ $(document).ready(function () {
       })
     }
   })
+
+  $('#loginBtn').click(function(){
+    resetFields();
+  })
+
+  function resetFields(){
+    if($('#input_email').hasClass('is-valid')){
+        $('#input_email').removeClass('is-valid')
+    }
+
+    if($('#input_email').hasClass('is-invalid')){
+        $('#input_email').removeClass('is-invalid')
+    }
+
+    if($('#input_password').hasClass('is-valid')){
+        $('#input_password').removeClass('is-valid')
+    }
+    if($('#input_password').hasClass('is-invalid')){
+        $('#input_password').removeClass('is-invalid')
+    }
+
+    $('#input_email').val('')
+    $('#input_password').val('')
+
+  }
 })
