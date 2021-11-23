@@ -15,7 +15,6 @@ $(document).ready(function () {
         $('#input_password').addClass('is-invalid')
       }
     }
-    alert(valid)
     return valid
   }
 

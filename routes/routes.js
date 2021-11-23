@@ -16,12 +16,13 @@ app.get('/', controller.getHome)
 app.get('/logout', controller.logOut)
 app.get('/login', controller.getLogin)
 app.get('/register', controller.getRegister)
-app.get('/admin', adminController.postLogin)
+app.get('/admin', adminController.getAdminLogin)
 
 // POST requests
 app.post('/register', controller.postHome)
 app.post('/postLogin', controller.postLogin)
 app.post('/addCart', cartController.addToCart)
+app.post('/postAllCustomers', adminController.postAllCustomers)
 
 
 module.exports = app
