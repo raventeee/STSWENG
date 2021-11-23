@@ -1,163 +1,11 @@
     <!-- NAVBAR START -->
     {{>navbar user}}
-    <!-- NAVBAR END -->
 
-    {{!-- LOGIN MODAL START --}}
-    <div class="container">
-      <div class="modal fade" id="loginModal">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
+    {{!-- LOGIN MODAL --}}
+    {{>login}}
 
-            <div class="modal-body">
-              <div class="row g-0">
-                <div class="col-md-6 col-lg-5 d-none d-md-block">
-                  <img
-                    src="assets/login cover.png"
-                    alt="login form"
-                    class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;"
-                  />
-                </div>
-                <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                  <div class="card-body p-4 p-lg-5 text-black needs-validation">
-
-                      <div class="d-flex align-items-center mb-3 pb-1">
-                        <i class="bi bi-controller me-3" style="font-size: 3rem;"></i>
-                        <span class="h1 fw-bold mb-0">Jet's Game Store</span>
-                      </div>
-
-                      <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-
-                      <div class="form-outline mb-4">
-                        <input type="email" id="input_email" name="input_email" class="form-control form-control-lg" required/>
-                        <label class="form-label" for="input_email">Email Address</label>
-                        <div class="invalid-feedback">Email should not be empty!</div>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input type="password" id="input_password" name="input_password" class="form-control form-control-lg" required/>
-                        <label class="form-label" for="input_password">Password</label>
-                        <div class="invalid-feedback">Password should not be empty!</div>
-                      </div>
-
-                      <div class="pt-1 mb-4">
-                        <button class="btn btn-dark btn-lg btn-block" id="login">Login</button>
-                      </div>
-
-                      <a class="small text-muted" href="#!">Forgot password?</a>
-                      <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" style="color: #393f81;">Register here</a></p>
-                      <a href="#" value="Close" class="small text-muted">Back to Home</a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{!-- LOGIN MODAL END --}}
-
-    {{!-- REGISTER MODAL START --}}
-    <div class="container">
-      <div class="modal fade" id="registerModal">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-body">
-                <div class="row g-0">
-                  <div class="col-xl-6 d-none d-xl-block">
-                    <img
-                      src="assets/register cover.png"
-                      alt="Sample photo"
-                      class="img-fluid"
-                      style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
-                    />
-                  </div>
-                  <div class="col-xl-6">
-                    <div class="card-body p-md-5 text-black">
-                      <h3 class="text-center mb-5 text-uppercase">Register</h3>
-
-                      <div class="row">
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input type="text" id="first_name" name="first_name" class="form-control form-control-lg" />
-                            <label class="form-label" for="first_name">First name</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-4">
-                          <div class="form-outline">
-                            <input type="text" id="last_name" name="last_name" class="form-control form-control-lg" />
-                            <label class="form-label" for="last_name">Last name</label>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                        <h6 class="mb-0 me-4">Gender: </h6>
-                
-                        <div class="form-check form-check-inline mb-0 me-4">
-                          <input class="form-check-input" type="radio" name="maleGender" id="maleGender" value="option1"/>
-                          <label class="form-check-label" for="maleGender">Male</label>
-                        </div>
-                
-                        <div class="form-check form-check-inline mb-0 me-4">
-                          <input class="form-check-input" type="radio" name="femaleGender" id="femaleGender" value="option2"/>
-                          <label class="form-check-label" for="femaleGender">Female</label>
-                        </div>
-                
-                        <div class="form-check form-check-inline mb-0">
-                          <input class="form-check-input" type="radio" name="otherGender" id="otherGender" value="option3"/>
-                          <label class="form-check-label" for="otherGender">Other</label>
-                        </div>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <div class="form-group input-group">
-                            <select class="custom-select" style="max-width: 120px;" disabled>
-                                <option selected="">+63</option>
-                            </select>
-                            <input name="phone-number" id="phone_number" name="phone_number" class="form-control form-control-lg" placeholder="Phone number" type="text">
-                        </div>
-                        <label class="form-label" for="phone_number">Phone Number</label>
-                      </div>
-
-                      <div class="form-outline ">
-                        <input type="text" id="email" name="email" class="form-control form-control-lg" />
-                        <label class="form-label" for="email">Email Address</label>
-                      </div>
-                
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-outline">
-                            <input type="text" id="password" name="password" class="form-control form-control-lg" />
-                            <label class="form-label" for="password">Password</label>
-                          </div>
-                        </div>
-                
-                        <div class="col-md-6">
-                          <div class="form-outline">
-                            <input type="text" id="confirm-password" name="confirm-password" class="form-control form-control-lg" />
-                            <label class="form-label" for="confirm-password">Confirm Password</label>
-                          </div>
-                        </div>
-
-                      <div class="d-flex justify-content-end pt-3">
-                        <button id="register" class="btn btn-primary btn-lg ms-2">Submit</button>
-                      </div>
-
-                      <h6>Already have an account?</h5>
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="small text-muted">Login Here</a>
-                      <a href="/" value="Close" class="small text-muted">Go Back home</a>
-
-
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    {{!-- REGISTER MODAL END --}}
+    {{!-- REGISTER MODAL --}}
+    {{>register}}
 
     <!-- FEATURED GAMES START -->
     <div class="container-large text-center my-4">
@@ -323,10 +171,10 @@
     <!-- LATEST RELEASES END -->
 
     <!-- FAQ START -->
-    <h1 class="text-center mt-5">Frequently Asked Questions</h1>
+    <h1 id="FAQ" class="text-center mt-5">Frequently Asked Questions</h1>
 
     <!-- ACCORDION START -->
-    <div class=" container accordion mx-auto mt-3 mb-5" id="accordionExample">
+    <div class="container accordion mx-auto mt-3" id="accordionExample">
 
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -464,6 +312,7 @@
         </div>
 
       </div>
+    </div>
     <!-- ACCORDION END -->
     <!-- FAQ END -->
 
