@@ -10,7 +10,8 @@ const controller = {
   getHome: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart']
+      scripts: ['addCart', 'home'],
+      title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
     if (db.getAuth.currentUser != null) {
@@ -28,7 +29,8 @@ const controller = {
    */
   getLogin: (req, res) => {
     const data = {
-      scripts: ['login']
+      scripts: ['login'],
+      title: 'Login'
     }
     console.log(db.getAuth.currentUser)
     // checks session, if there is a current logged-in user
@@ -45,8 +47,9 @@ const controller = {
    */
   getRegister: (req, res) => {
     const data = {
-      styles: ['style'],
-      scripts: ['register']
+      styles: ['style', 'forms'],
+      scripts: ['register'],
+      title: 'Register'
     }
     console.log(db.getAuth.currentUser)
     // checks session, if there is a currently logged-in user
@@ -105,10 +108,10 @@ const controller = {
     const user = {}
     db.authLogin(data, function (result) {
       // result is authuser
-      if (result != null) {
+      if (result !== false && result !== null) {
         const email = result.email
         db.getAll('Customers', function (result) {
-          if (result != null) {
+          if (result !== null) {
             let flag = false
             let i = 0
             while (!flag) {

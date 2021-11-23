@@ -24,7 +24,7 @@ describe('Login using email and password that exists in Firebase Auth, all shoul
 })
 
 describe('Login using email and password that DOES NOT exist in Firebase Auth, all should be rejected', () => {
-  test('Logging in email: \'aaa@gmail.com\', password: \'password123\'', () => {
+  test('Logging in email: \'aaa@gmail.com\', password: \'password123\'', done => {
     // (1) Arrange
     const person = {
       email: 'aaa@gmail.com',
@@ -34,7 +34,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)
@@ -45,7 +45,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     authLogin(person, callback)
   })
 
-  test('Logging in email: \'sss@gmail.com\', password: \'000\'', () => {
+  test('Logging in email: \'sss@gmail.com\', password: \'000\'', done => {
     // (1) Arrange
     const person = {
       email: 'sss@gmail.com',
@@ -55,7 +55,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)
@@ -66,7 +66,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     authLogin(person, callback)
   })
 
-  test('Logging in email: \'uuu@gmail.com\', password: \'878\'', () => {
+  test('Logging in email: \'uuu@gmail.com\', password: \'878\'', done => {
     // (1) Arrange
     const person = {
       email: 'uuu@gmail.com',
@@ -76,7 +76,7 @@ describe('Login using email and password that DOES NOT exist in Firebase Auth, a
     function callback (data) {
       try {
         // (3) Assert
-        expect(data).toBeUnDefined()
+        expect(data).toBe(false)
         done()
       } catch (error) {
         done(error)

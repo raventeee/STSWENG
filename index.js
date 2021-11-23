@@ -3,6 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
+const favicon = require('serve-favicon')
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
@@ -24,12 +25,17 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', '.hbs')
 app.use(express.static(path.join(__dirname, '/public')))
 
+app.use(favicon(path.join(__dirname, 'public', 'assets', 'gtaV.jpg')))
+
 // routes
 app.use('/', routes)
 
 // error page
 app.use((req, res) => {
-  res.render('error')
+  res.render('error', {
+    styles: ['style'],
+    title: 'Error: Page Not Found'
+  })
 })
 
 app.listen(config.port, config.host, () => {
