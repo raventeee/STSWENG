@@ -67,6 +67,7 @@ const db = {
       }).catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
+        callback(false)
         console.log('error in catch')
         console.log(errorCode)
         console.log(errorMessage)
@@ -74,22 +75,9 @@ const db = {
     }).catch((error) => {
       const errorCode = error.code
       const errorMessage = error.message
+      callback(false)
       console.log(errorCode)
       console.log(errorMessage)
-    })
-  },
-
-  checkSession: (callback = null) => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid
-        console.log(user)
-        callback(user)
-      } else {
-        callback(false)
-      }
     })
   },
 
