@@ -10,7 +10,7 @@ const controller = {
   getHome: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home'],
+      scripts: ['addCart', 'home', 'register'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
