@@ -532,6 +532,15 @@ $(document).ready(function () {
         if($('#confirm_password').hasClass('is-invalid')){
             $('#confirm_password').removeClass('is-invalid')
         }
+
+        //clear fields
+        $('#first_name').val('')
+        $('#last_name').val('')
+        $('#phone_number').val('')
+        $('#email').val('')
+        $('#password').val('')
+        $('#confirm_password').val('')
+        $('input[name=Gender]').attr('checked',false);
     
     }
 })
