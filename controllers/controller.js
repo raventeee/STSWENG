@@ -45,7 +45,8 @@ const controller = {
    */
   getRegister: (req, res) => {
     const data = {
-      styles: ['style']
+      styles: ['style'],
+      scripts: ['register']
     }
     console.log(db.getAuth.currentUser)
     // checks session, if there is a currently logged-in user
