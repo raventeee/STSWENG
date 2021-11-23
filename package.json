@@ -23,7 +23,8 @@
   "homepage": "https://github.com/raventeee/STSWENG#readme",
   "standard": {
     "ignore": [
-      "/public"
+      "/public",
+      "/__tests__"
     ]
   },
   "dependencies": {
