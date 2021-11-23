@@ -83,17 +83,5 @@ $(document).ready(function () {
             $("#navPCMAC").css('background-color', '#292b2c');
         }
     });
-
-    $("#navORDERSTATUS").on({
-        mouseenter: function() {
-            $("#2navORDERSTATUS").css('color', 'black');
-            $("#navORDERSTATUS").css('background-color', '#FAF9F6');
-            $("#navORDERSTATUS").css('border-radius', '5px');
-        },
-        mouseleave: function() {
-            $("#2navORDERSTATUS").css('color', '#FAF9F6');
-            $("#navORDERSTATUS").css('background-color', '#292b2c');
-        }
-    });
 })
   
