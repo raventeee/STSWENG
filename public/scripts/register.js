@@ -83,7 +83,37 @@ $(document).ready(function () {
         var email = validator.trim($('#email').val());
         var password = validator.trim($('#password').val());
         var confirm_pass = validator.trim($('#confirm_password').val());
-        validateAllFields(Fname, Lname, phoneNumber, email, password, confirm_pass);
+        if (validateAllFields(Fname, Lname, phoneNumber, email, password, confirm_pass))
+        {
+            var gender = $('input[name="Gender"]:checked').val();
+            Fname = Fname.charAt(0).toUpperCase() + Fname.slice(1)
+            Lname = Lname.charAt(0).toUpperCase() + Lname.slice(1)
+            phoneNumber = "+63" + phoneNumber
+            let data = {
+                firstName: Fname,
+                lastName: Lname,
+                address: "null",
+                mobile: phoneNumber,
+                gender: gender,
+                email: email,
+                password:password,
+                cart: [],
+                customerTransactions: []
+                }
+            $.ajax({
+                type: 'POST',
+                data: data,
+                url: '/register',
+                success: function (result) {
+                    if (result) {
+                    location.href = '/'
+                    } else {
+                    alert('err')
+                    }
+                }
+                })
+        }
+        
     })
 
     $('#show_password').click(function () {
@@ -384,6 +414,7 @@ $(document).ready(function () {
                 booleanFlag = false;
             }
         }
+        return booleanFlag
     }
 
     function validateAllFields(Fname, Lname, phoneNumber, email, password, confirm_pass){
@@ -394,8 +425,6 @@ $(document).ready(function () {
         var emailFlag = validateEmail(email)
         var passwordFlag = validatePassword(password)
         var confirm_passFlag = validateConfirmPassword(password,confirm_pass)
-
-
         console.log('Fname: ' +  FnameFlag);
         console.log('Lname: ' +  LnameFlag);
         console.log('GenderFlag: ' +  GenderFlag);
@@ -403,6 +432,18 @@ $(document).ready(function () {
         console.log('emailFlag: ' +  emailFlag);
         console.log('passwordFlag: ' +  passwordFlag);
         console.log('confirm_passFlag: ' +  confirm_passFlag);
+        if (FnameFlag && LnameFlag && GenderFlag && phoneNumberFlag && emailFlag && passwordFlag && confirm_passFlag)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+
+
+        
+
     }
 
     function showHidePassword(){
