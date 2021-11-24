@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    // assume email does not yet exist
+    var emailExists = false
+
     $('#first_name').blur(function(){
         var Fname = validator.trim($('#first_name').val());
         validateFname(Fname);
@@ -63,7 +66,29 @@ $(document).ready(function () {
 
     $('#email').blur(function(){
         var email = validator.trim($('#email').val());
-        validateEmail(email);
+        // check if email already exists
+        $.ajax({
+            type: 'POST',
+            data: {
+                email: email
+            },
+            url: '/checkEmail',
+            success: function (result) {
+                // meaning email exists
+                if (result === true) {
+                    // mark as invalid
+                    if(!$('#email').hasClass('is-invalid')){
+                        $('#email').addClass('is-invalid')
+                    }
+                    $('#email-invalid').text('Email already exists!')
+                    
+                    emailExists = true
+                } else {
+                    emailExists = false
+                    validateEmail(email)
+                }
+            }
+        })
     })
 
     $('#password').blur(function(){
@@ -336,6 +361,22 @@ $(document).ready(function () {
                 $('#email-invalid').text('Invalid email!');
                 $('#email').addClass('is-invalid')
                 booleanFlag = false;
+            }
+        }
+
+        // display error message if exists
+        if (emailExists) {
+            booleanFlag = false
+            if($('#email').hasClass('is-valid')) {
+                $('#email').removeClass('is-valid')
+            }
+            if (!$('#email').hasClass('is-invalid')) {
+                $('#email').addClass('is-invalid')
+            }
+            $('#email-invalid').text('Email already exists!');
+        } else {
+            if ($('#email').hasClass('is-invalid')) {
+                $('#email').removeClass('is-invalid')
             }
         }
         return booleanFlag;

@@ -18,6 +18,7 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
+      data.isLoggedIn = true
     }
     res.render('home', data)
   },
@@ -185,6 +186,23 @@ const controller = {
       res.redirect('/')
     }).catch(() => {
       res.render('error')
+    })
+  },
+
+  /**
+   * This function checks if an email already exist in the database
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  checkEmail: (req, res) => {
+    const email = req.body.email
+    db.getOne('Customers', email, function (result) {
+      // send true if email exists
+      if (result !== null && result !== undefined) {
+        res.send(true)
+      } else {
+        res.send(false)
+      }
     })
   }
 }
