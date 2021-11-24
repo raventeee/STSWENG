@@ -20,5 +20,6 @@ app.get('/register', controller.getRegister)
 app.post('/register', controller.postHome)
 app.post('/postLogin', controller.postLogin)
 app.post('/addCart', cartController.addToCart)
+app.post('/checkEmail', controller.checkEmail)
 
 module.exports = app
