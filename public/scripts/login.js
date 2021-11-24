@@ -23,7 +23,7 @@ $(document).ready(function () {
         $('#input_password').removeClass('is-invalid')
       }
     }
-    alert(valid)
+    // alert(valid)
     return valid
   }
 

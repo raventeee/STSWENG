@@ -18,6 +18,7 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
+      data.isLoggedIn = true
     }
     res.render('home', data)
   },
