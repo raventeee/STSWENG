@@ -24,43 +24,6 @@ const controller = {
   },
 
   /**
-   * This function renders the login page
-   * @param req - the incoming request containing either the query or body
-   * @param res - the result to be sent out after processing the request
-   */
-  getLogin: (req, res) => {
-    const data = {
-      scripts: ['login'],
-      title: 'Login'
-    }
-    console.log(db.getAuth.currentUser)
-    // checks session, if there is a current logged-in user
-    if (db.getAuth.currentUser !== null) {
-      res.redirect('/')
-    } else {
-      res.render('login', data)
-    }
-  },
-  /**
-   * This function renders the page
-   * @param req - the incoming request containing either the query or body
-   * @param res - the result to be sent out after processing the request
-   */
-  getRegister: (req, res) => {
-    const data = {
-      styles: ['style', 'forms'],
-      scripts: ['register'],
-      title: 'Register'
-    }
-    console.log(db.getAuth.currentUser)
-    // checks session, if there is a currently logged-in user
-    if (db.getAuth.currentUser !== null) {
-      res.redirect('/')
-    } else {
-      res.render('register', data)
-    }
-  },
-  /**
    * This function registers a new customer
    * @param req - the incoming request containing either the query or body
    * @param res - the result to be sent out after processing the request

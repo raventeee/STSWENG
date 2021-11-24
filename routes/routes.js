@@ -14,8 +14,6 @@ app.set('views', path.join(__dirname, '../views'))
 // GET requests
 app.get('/', controller.getHome)
 app.get('/logout', controller.logOut)
-app.get('/login', controller.getLogin)
-app.get('/register', controller.getRegister)
 app.get('/admin', adminController.getAdminLogin)
 
 // POST requests
