@@ -3,7 +3,6 @@ $(document).ready(function () {
     // process here
     const email = $('#current_user').data('email')
     const productId = $(this).parent().attr('id')
-    alert('clicked\n' + email + '\n' + productId)
     $.ajax({
       type: 'POST',
       data: {
@@ -11,7 +10,17 @@ $(document).ready(function () {
         productId: productId,
         qty: 1 // by default 1
       },
-      url: '/addCart'
+      url: '/addCart',
+      success: function (result) {
+        if (result === false) {
+          $("#loginModal").modal('show')
+        } else {
+          $('#cart_success').modal('show')
+          setTimeout(function() {
+            $('#cart_success').modal('hide');
+          }, 1500)
+        }
+      }
     })
   })
 })
