@@ -22,5 +22,6 @@ app.post('/postLogin', controller.postLogin)
 app.post('/addCart', cartController.addToCart)
 app.post('/postAllCustomers', adminController.postAllCustomers)
 app.post('/checkEmail', controller.checkEmail)
+app.post('/postAddProduct', adminController.postAddProduct)
 
 module.exports = app

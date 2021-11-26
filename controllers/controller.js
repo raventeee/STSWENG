@@ -74,28 +74,22 @@ const controller = {
       // result is authuser
       if (result !== false && result !== null) {
         const email = result.email
-        db.getAll('Admin',function(adminresult){
+        db.getAll('Admin', function (adminresult) {
           let flag = false
-          if (adminresult !== null)
-          {
+          if (adminresult !== null) {
             let i = 0
-            while (!flag && (i < adminresult.length)){
-              if (email === adminresult[i].customerEmail)
-              {
+            while (!flag && (i < adminresult.length)) {
+              if (email === adminresult[i].customerEmail) {
                 flag = true
               }
               i++
             }
-            if (flag)
-            {
+            if (flag) {
               res.send('0')
-            }
-            else 
-            {
+            } else {
               console.log("not an admin")
               db.getAll('Customers', function (result) {
-                if (result !== null) 
-                {
+                if (result !== null) {
                   let i = 0
                   while (!flag && i < result.length) 
                   {

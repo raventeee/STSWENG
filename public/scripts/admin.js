@@ -41,6 +41,25 @@ $(document).ready(function () {
         })
     })
 
-    
+    $('#add_product').click(function () {
+        const data = {
+            productBrand: 'testBrand',
+            productCategory: 'testcat',
+            productDesc: 'testdesc',
+            productName: 'testname',
+            productPrice: 1000,
+            productStock: 120
+        }
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: '/postAddProduct',
+            success: function (result) {
+                if (result) {
+                    alert('Success')
+                }
+            }
+        })
+    })
 
 })
