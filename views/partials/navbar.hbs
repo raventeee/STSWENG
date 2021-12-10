@@ -16,13 +16,29 @@
 
                 {{!-- if logged in or not --}}
                 {{#if this}}
-                    <div class="ms-3" id="current_user" data-email="{{this.email}}">
-                        <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
+                    <div class="dropdown ms-3" id="current_user" data-email="{{this.email}}">
+                        {{!-- <button class="btn btn-secondary navBtn btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" data-bs-target="#dropDown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-lines-fill"></i></button>
+
+                        <div id="dropDown" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div> --}}
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-lines-fill"></i>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">My Account</a></li>
+                                <li><a class="dropdown-item" href="#">Log out</a></li>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="ms-3">
                         <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
                     </div>
+
+                    
 
                 {{else}}
                     <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
