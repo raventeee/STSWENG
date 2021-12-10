@@ -66,29 +66,32 @@ $(document).ready(function () {
 
     $('#email').blur(function(){
         var email = validator.trim($('#email').val());
-        // check if email already exists
-        $.ajax({
-            type: 'POST',
-            data: {
-                email: email
-            },
-            url: '/checkEmail',
-            success: function (result) {
-                // meaning email exists
-                if (result === true) {
-                    // mark as invalid
-                    if(!$('#email').hasClass('is-invalid')){
-                        $('#email').addClass('is-invalid')
+        var emptyEmail = validator.isEmpty(email);
+        if (!emptyEmail) {
+            // check if email already exists
+            $.ajax({
+                type: 'POST',
+                data: {
+                    email: email
+                },
+                url: '/checkEmail',
+                success: function (result) {
+                    // meaning email exists
+                    if (result === true) {
+                        // mark as invalid
+                        if(!$('#email').hasClass('is-invalid')){
+                            $('#email').addClass('is-invalid')
+                        }
+                        $('#email-invalid').text('Email already exists!')
+                        
+                        emailExists = true
+                    } else {
+                        emailExists = false
+                        validateEmail(email)
                     }
-                    $('#email-invalid').text('Email already exists!')
-                    
-                    emailExists = true
-                } else {
-                    emailExists = false
-                    validateEmail(email)
                 }
-            }
-        })
+            })   
+        }
     })
 
     $('#password').blur(function(){
