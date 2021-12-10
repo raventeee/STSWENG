@@ -1,56 +1,50 @@
 <nav class="sticky-top">
     <nav id="navbarFirst" class="d-flex navbar navbar-expand-lg navbar-light" style="background-color: #ca3939;">
-        <div class="container-fluid d-flex">
+        <div class="container mt-3 ps-5">
 
-            <div class="d-flex mx-auto">
+            <div class="container ">
                 <i class="bi bi-controller me-3 mt-2" style="font-size: 3rem; color: #FAF9F6;"></i>
                 <a class="navbar-brand text-start fs-1 display-1" href="/" style="color: #FAF9F6;">Jet's Game Store</a>
             </div>
             
-            
-            <div class="container-fluid d-flex mt-3" style="width: 700px;">
 
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn navBtn btn-secondary btn-lg" type="submit"><i class="bi bi-search"></i></button>
-                    </div>
-                </div>
-                
-                {{!-- if logged in or not --}}
-                {{#if this}}
-                    <div class="ms-3" id="current_user" data-email="{{this.email}}">
-                        <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
-                    </div>
 
-                    <div class="ms-3">
-                        <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
-                    </div>
-
-                {{else}}
-                    <div class="ms-3">
-                        {{!-- <a href="/login"><button class="btn btn-secondary btn-sm btn-navbar">Log in</button></a> --}}
-                        <button id="loginBtn" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
-                    </div>
-
-                    <div class="ms-3">
-                        {{!-- <a href="/register"><button class="btn btn-secondary btn-sm btn-navbar">Sign up</button></a> --}}
-                        <button id="register" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</button>
-                    </div>
-                {{/if}}
-                
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                <button class="btn navBtn btn-secondary btn-lg" type="submit"><i class="bi bi-search"></i></button>
 
                 <!-- burger icon -->
-                <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
+            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             </div>
+
+            {{!-- if logged in or not --}}
+            {{#if this}}
+                <div class="ms-3" id="current_user" data-email="{{this.email}}">
+                    <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
+                </div>
+
+                <div class="ms-3">
+                    <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
+                </div>
+
+            {{else}}
+                <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                    <button id="loginBtn" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+                </div>
+
+                <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                    <button id="register" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</button>
+                </div>
+            {{/if}}
+
+            
         </div>
     </nav>
 
     <nav id="navbarSecond" class="navbar navbar-expand-lg" style="background-color: #292b2c;">
-        <div class="container-fluid">
+        <div class="mx-auto">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
@@ -79,6 +73,13 @@
                         <a id="2navPCMAC" class="nav-link" href="#">PC/MAC</a>
                     </li>
                 </ul>
+
+                
+
+                {{!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> --}}
             </div>
         </div>
     </nav>
