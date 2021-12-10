@@ -2,42 +2,43 @@
     <nav id="navbarFirst" class="d-flex navbar navbar-expand-lg navbar-light" style="background-color: #ca3939;">
         <div class="container mt-3 ps-5">
 
-            <div class="container ">
+            <div class="d-flex">
                 <i class="bi bi-controller me-3 mt-2" style="font-size: 3rem; color: #FAF9F6;"></i>
                 <a class="navbar-brand text-start fs-1 display-1" href="/" style="color: #FAF9F6;">Jet's Game Store</a>
             </div>
             
 
 
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
-                <button class="btn navBtn btn-secondary btn-lg" type="submit"><i class="bi bi-search"></i></button>
+            <div class="d-flex">
+                <button class="btn navBtn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#searchModal" type="submit"><i class="bi bi-search"></i></button>
+
+                
+
+                {{!-- if logged in or not --}}
+                {{#if this}}
+                    <div class="ms-3" id="current_user" data-email="{{this.email}}">
+                        <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
+                    </div>
+
+                    <div class="ms-3">
+                        <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
+                    </div>
+
+                {{else}}
+                    <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                        <button id="loginBtn" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+                    </div>
+
+                    <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
+                        <button id="register" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</button>
+                    </div>
+                {{/if}}
 
                 <!-- burger icon -->
-            <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
-
-            {{!-- if logged in or not --}}
-            {{#if this}}
-                <div class="ms-3" id="current_user" data-email="{{this.email}}">
-                    <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-person-lines-fill"></i></button>
-                </div>
-
-                <div class="ms-3">
-                    <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
-                </div>
-
-            {{else}}
-                <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                    <button id="loginBtn" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
-                </div>
-
-                <div class="ms-3 d-none d-xs-none d-sm-none d-md-none d-lg-block d-xl-block">
-                    <button id="register" class="btn navBtn btn-secondary btn-sm btn-navbar" data-bs-toggle="modal" data-bs-target="#registerModal">Sign up</button>
-                </div>
-            {{/if}}
 
             
         </div>
