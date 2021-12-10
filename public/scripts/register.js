@@ -344,12 +344,20 @@ $(document).ready(function () {
 
         else if(!emptyEmail){
             if(valid){
-                if($('#email').hasClass('is-invalid')){
-                    $('#email').removeClass('is-invalid')
-                }
-              
-                if(!$('#email').hasClass('is-valid')){
-                    $('#email').addClass('is-valid')
+                // display error message if exists
+                if (emailExists) {
+                    booleanFlag = false
+                    if($('#email').hasClass('is-valid')) {
+                        $('#email').removeClass('is-valid')
+                    }
+                    if (!$('#email').hasClass('is-invalid')) {
+                        $('#email').addClass('is-invalid')
+                    }
+                    $('#email-invalid').text('Email already exists!');
+                } else {
+                    if ($('#email').hasClass('is-invalid')) {
+                        $('#email').removeClass('is-invalid')
+                    }
                 }
             }
 
@@ -364,21 +372,6 @@ $(document).ready(function () {
             }
         }
 
-        // display error message if exists
-        if (emailExists) {
-            booleanFlag = false
-            if($('#email').hasClass('is-valid')) {
-                $('#email').removeClass('is-valid')
-            }
-            if (!$('#email').hasClass('is-invalid')) {
-                $('#email').addClass('is-invalid')
-            }
-            $('#email-invalid').text('Email already exists!');
-        } else {
-            if ($('#email').hasClass('is-invalid')) {
-                $('#email').removeClass('is-invalid')
-            }
-        }
         return booleanFlag;
     }
 
