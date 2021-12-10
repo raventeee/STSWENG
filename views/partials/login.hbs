@@ -3,50 +3,49 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
-                <div class="modal-body">
-                    
-                    <div class="row g-0">
+            <div class="modal-body">
+                <div class="row g-0">
+                <div class="col-md-6 col-lg-5 d-none d-md-block">
+                    <img
+                    src="assets/login cover.png"
+                    alt="login form"
+                    class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;"
+                    />
+                </div>
+                <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black needs-validation">
 
-                        <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img
-                            src="assets/login cover.png"
-                            alt="login form"
-                            class="img-fluid h-100" style="border-radius: 1rem 0 0 1rem;"
-                            />
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                        <i class="bi bi-controller me-3" style="font-size: 3rem;"></i>
+                        <span class="h1 fw-bold mb-0">Jet's Game Store</span>
                         </div>
-                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                            <div class="card-body p-4 p-lg-5 text-black needs-validation">
 
-                                <div class="d-flex align-items-center mb-3 pb-1">
-                                <i class="bi bi-controller me-3" style="font-size: 3rem;"></i>
-                                <span class="h1 fw-bold mb-0">Jet's Game Store</span>
-                                </div>
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
 
-                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in to your account</h5>
-
-                                <div class="form-outline mb-4">
-                                <input type="email" id="input_email" name="input_email" class="form-control form-control-lg" required/>
-                                <label class="form-label" for="input_email">Email Address</label>
-                                <div id="email_error" class="invalid-feedback">Email should not be empty!</div>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                <input type="password" id="input_password" name="input_password" class="form-control form-control-lg" required/>
-                                <label class="form-label" for="input_password">Password</label>
-                                <div id="password_error" class="invalid-feedback">Password should not be empty!</div>
-                                </div>
-
-                                <div class="pt-1 mb-4">
-                                <button class="btn btn-danger btn-lg btn-block" id="login">Login</button>
-                                </div>
-
-                                {{!-- <a class="small text-muted" href="#!">Forgot password?</a> --}}
-                                <p class="mb-5 pb-lg-2" style="color: #000000;">Don't have an account? <a href="#" id="registerHere" data-bs-toggle="modal" data-bs-target="#registerModal" style="color: #393f81;">Register here</a></p>
-
-                            </div>
+                        <div class="form-outline mb-4">
+                        <input type="email" id="input_email" name="input_email" class="form-control form-control-lg" required/>
+                        <label class="form-label" for="input_email">Email Address</label>
+                        <div class="invalid-feedback">Email should not be empty!</div>
                         </div>
+
+                        <div class="form-outline mb-4">
+                        <input type="password" id="input_password" name="input_password" class="form-control form-control-lg" required/>
+                        <label class="form-label" for="input_password">Password</label>
+                        <div class="invalid-feedback">Password should not be empty!</div>
+                        </div>
+
+                        <div class="pt-1 mb-4">
+                        <button class="btn btn-danger btn-lg btn-block" id="login">Login</button>
+                        </div>
+
+                        {{!-- <a class="small text-muted" href="#!">Forgot password?</a> --}}
+                        <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="#" id="registerHere" data-bs-toggle="modal" data-bs-target="#registerModal" style="color: #393f81;">Register here</a></p>
+                        <a href="#" class="backToHome small text-muted">Back to Home</a>
+
                     </div>
                 </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>

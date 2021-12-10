@@ -7,7 +7,6 @@ $(document).ready(function () {
       if (!$('#input_email').hasClass('is-invalid')) {
         $('#input_email').addClass('is-invalid')
       }
-      $('#email_error').text('Email should not be empty!')
     } else {
       if ($('#input_email').hasClass('is-invalid')) {
         $('#input_email').removeClass('is-invalid')
@@ -19,7 +18,6 @@ $(document).ready(function () {
       if (!$('#input_password').hasClass('is-invalid')) {
         $('#input_password').addClass('is-invalid')
       }
-      $('#password_error').text('Password should not be empty!')
     } else {
       if ($('#input_password').hasClass('is-invalid')) {
         $('#input_password').removeClass('is-invalid')
@@ -54,15 +52,13 @@ $(document).ready(function () {
           {
             location.href = '/admin'
           } else {
-            $('#email_error').text('Email does not exist!')
-            $('#password_error').text('Password does not exist!')
+            alert('Invalid credentials')
             // remove class is-invalid if exists
-            if (!$('#input_email').hasClass('is-invalid')) {
-              $('#input_email').addClass('is-invalid')
+            if ($('#input_email').hasClass('is-invalid')) {
+              $('#input_email').removeClass('is-invalid')
             }
-            
-            if (!$('#input_password').hasClass('is-invalid')) {
-              $('#input_password').addClass('is-invalid')
+            if ($('#input_password').hasClass('is-invalid')) {
+              $('#input_password').removeClass('is-invalid')
             }
           }
         }
