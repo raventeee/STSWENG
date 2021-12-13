@@ -15,6 +15,7 @@ app.get('/', controller.getHome)
 app.get('/logout', controller.logOut)
 app.get('/login', controller.getLogin)
 app.get('/register', controller.getRegister)
+app.get('/adminhome', controller.getAdminHome)
 
 // POST requests
 app.post('/register', controller.postHome)

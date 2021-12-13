@@ -61,6 +61,14 @@ const controller = {
     }
   },
   /**
+   * This function renders the admin home page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  getAdminHome: (req, res) => {
+    res.render('adminhome')
+  },
+  /**
    * This function registers a new customer
    * @param req - the incoming request containing either the query or body
    * @param res - the result to be sent out after processing the request
