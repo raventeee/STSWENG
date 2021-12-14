@@ -1,6 +1,6 @@
 var option = {
     animation: true,
-    delay: 2000
+    delay: 1500
 };
 
 var toast = document.getElementById("toast");
