@@ -20,6 +20,7 @@ app.get('/adminhome', controller.getAdminHome)
 // POST requests
 app.post('/register', controller.postHome)
 app.post('/postLogin', controller.postLogin)
+app.post('/postLogout', controller.logOut)
 app.post('/addCart', cartController.addToCart)
 app.post('/checkEmail', controller.checkEmail)
 

@@ -83,5 +83,14 @@ $(document).ready(function () {
             $("#navPCMAC").css('background-color', '#292b2c');
         }
     });
+    $("#logoutbutton").click(function(){
+        $.ajax
+        ({
+            type: 'POST',
+            data: null,
+            url: '/postLogout',
+        })
+        location.reload() 
+    });
+
 })
-  
