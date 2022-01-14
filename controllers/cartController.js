@@ -59,6 +59,21 @@ const cartController = {
         }
       })
     }
+  },
+
+  /**
+   * This function opens the cart
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  openCart: (req, res) => {
+    // const data = {
+    //   styles: ['style'],
+    //   scripts: [],
+    //   title: "Jet's Game Store" // title of the web page
+    // }
+    res.send('Cart page in progress')
+    //res.render('')
   }
 }
 
