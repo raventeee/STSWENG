@@ -11,7 +11,8 @@ const adminController = {
    */
   getAdminLogin: (req, res) => {
     const data = {
-      scripts: ['admin']
+      scripts: ['admin'],
+      title: "Jet's Game Store: Admin"
     }
     if (db.getAuth.currentUser != null) {
       const email = db.getAuth.currentUser.email
@@ -26,9 +27,14 @@ const adminController = {
             i++
           }
           if (flag) {
-            res.render('admin', data)
+            db.getAll('Customers', function (result) {
+              data.customers = result;
+              data.user = { email: email };
+              data.isLoggedIn = true;
+              res.render('admin', data);
+            });
           } else {
-            res.redirect('/error')
+            res.redirect('/error');
           }
         }
       })
