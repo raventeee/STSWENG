@@ -23,6 +23,22 @@ const controller = {
     res.render('home', data)
   },
 
+  getCart: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store - Cart Page" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('cart', data)
+  },
+
   /**
    * This function registers a new customer
    * @param req - the incoming request containing either the query or body

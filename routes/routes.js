@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, '../views'))
 
 // GET requests
 app.get('/', controller.getHome)
+app.get('/cart', controller.getCart)
 app.get('/logout', controller.logOut)
 app.get('/admin', adminController.getAdminLogin)
 
