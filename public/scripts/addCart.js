@@ -1,8 +1,8 @@
 $(document).ready(function () {
   $('.add_cart').click(function () {
     // process here
-    const email = $('#current_user').data('email');
-    const productId = $(this).parent().attr('id');
+    const email = $('#current_user').data('email')
+    const productId = $(this).parent().attr('id')
     $.ajax({
       type: 'POST',
       data: {
@@ -13,14 +13,14 @@ $(document).ready(function () {
       url: '/addCart',
       success: function (result) {
         if (result === false) {
-          $("#loginModal").modal('show');
+          $("#loginModal").modal('show')
         } else {
-          $('#cart_success').modal('show');
+          $('#cart_success').modal('show')
           setTimeout(function() {
             $('#cart_success').modal('hide');
-          }, 1500);
+          }, 1500)
         }
       }
-    });
-  });
+    })
+  })
 })
