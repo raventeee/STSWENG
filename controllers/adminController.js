@@ -11,7 +11,8 @@ const adminController = {
    */
   getAdminLogin: (req, res) => {
     const data = {
-      scripts: ['admin']
+      scripts: ['admin'],
+      title: "Jet's Game Store: Admin"
     }
     if (db.getAuth.currentUser != null) {
       const email = db.getAuth.currentUser.email
@@ -26,9 +27,14 @@ const adminController = {
             i++
           }
           if (flag) {
-            res.render('admin', data)
+            db.getAll('Customers', function (result) {
+              data.customers = result;
+              data.user = { email: email, admin: true };
+              data.isLoggedIn = true;
+              res.render('admin', data);
+            });
           } else {
-            res.redirect('/error')
+            res.redirect('/error');
           }
         }
       })
@@ -55,7 +61,7 @@ const adminController = {
   /**
    * This function adds a product entered by an admin
    * @param req - the incoming request containing either the query or body
-   * @param res - the result to be sent out after processing the request 
+   * @param res - the result to be sent out after processing the request
    */
   postAddProduct: (req, res) => {
     const data = req.body
@@ -65,6 +71,11 @@ const adminController = {
         size = size + 1000000
         size = size.toString() // '1000006'
         size = size.substring(1, size.length) // '000006'
+        size = 'P' + size
+        data[product.images] = []
+        data[product.id] = size
+        data[product.price] = parseInt(data[product.price])
+        data[product.stock] = parseInt(data[product.stock])
         db.insert('Products', size, data, function (result) {
           if (result !== null) {
             res.send(true)
@@ -74,8 +85,25 @@ const adminController = {
         })
       }
     })
-  }
+  },
 
+  /**
+   * This function renders all the list of transactions made
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  getAllTransactions: (req, res) => {
+    let transactions = []
+    db.getAll('Customers', function (result) {
+      if (result !== null && result !== undefined) {
+        // get all customer transactions
+        // console.log(result[4][customer.transactions].length)
+        transactions = result.filter(elem => elem[customer.transactions].length > 0).map(elem => elem[customer.transactions])
+        console.log(transactions) // remove
+        // res.render('', transactions) // edit
+      }
+    })
+  }
 }
 
 module.exports = adminController

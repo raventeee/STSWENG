@@ -15,6 +15,8 @@ app.set('views', path.join(__dirname, '../views'))
 app.get('/', controller.getHome)
 app.get('/logout', controller.logOut)
 app.get('/admin', adminController.getAdminLogin)
+app.get('/adminTransactions', adminController.getAllTransactions)
+app.get('/open_cart/:email', cartController.openCart)
 
 // POST requests
 app.post('/register', controller.postHome)
