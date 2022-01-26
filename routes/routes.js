@@ -16,6 +16,13 @@ app.get('/', controller.getHome)
 app.get('/cart', controller.getCart)
 app.get('/logout', controller.logOut)
 app.get('/admin', adminController.getAdminLogin)
+app.get('/pS5page', controller.getPs5Page)
+app.get('/pS4page', controller.getPs4Page)
+app.get('/xboxpage', controller.getXboxPage)
+app.get('/nswpage', controller.getNswPage)
+app.get('/pcmacpage', controller.getPcmacPage)
+
+
 
 // POST requests
 app.post('/register', controller.postHome)
