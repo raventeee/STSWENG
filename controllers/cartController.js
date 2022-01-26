@@ -67,13 +67,57 @@ const cartController = {
    * @param res - the result to be sent out after processing the request
    */
   openCart: (req, res) => {
-    // const data = {
-    //   styles: ['style'],
-    //   scripts: [],
-    //   title: "Jet's Game Store" // title of the web page
-    // }
-    res.send('Cart page in progress')
-    //res.render('')
+    const email = req.params.email;
+    const data = {
+      styles: ['style'],
+      scripts: [''],
+      title: "Jet's Game Store" // title of the web page
+    }
+    db.getOne('Customers', email, function (result) {
+      if (result !== null) {
+        const customerCart = result.customerCart;
+        const prodIds = customerCart.map((element) => { return element.productId });
+        // console.log(customerCart);
+        // console.log(prodIds);
+        let cartProducts = [];
+        db.getAll('Products', function (result) {
+          if (result) {
+            // retrieves the products inside the cart
+            result.forEach((element) => {
+              if (prodIds.includes(element.productId)) {
+                let item = {
+                  productName: element.productName,
+                  productImages: element.productImages[0],
+                  productCategory: element.productCategory,
+                  productPrice: element.productPrice,
+                  productStock: element.productStock,
+                  productDesc: element.productDesc,
+                  productBrand: element.productBrand,
+                  productId: element.productId
+                };
+                // iterates customerCart and inserts the qty in cart
+                customerCart.every((elem) => {
+                  if (elem.productId == item.productId) {
+                    item.qty = elem.qty;
+                    return false;
+                  } else {
+                    return true;
+                  }
+                });
+                cartProducts.push(item);
+              }
+            });
+            // console.log(cartProducts);
+            data.cartProducts = cartProducts;
+            // res.render('', data); // render the view
+            res.send('Cart page in progress')
+            //res.render('')
+          } else {
+            data.cartProducts = []
+          }
+        });
+      }
+    });
   }
 }
 

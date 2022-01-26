@@ -29,7 +29,7 @@ const adminController = {
           if (flag) {
             db.getAll('Customers', function (result) {
               data.customers = result;
-              data.user = { email: email };
+              data.user = { email: email, admin: true };
               data.isLoggedIn = true;
               res.render('admin', data);
             });
