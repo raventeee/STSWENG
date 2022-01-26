@@ -2,6 +2,86 @@ const db = require('../db')
 const customer = require('../models/customer')
 
 const controller = {
+  getPs5Page: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('ps5page', data)
+  },
+
+  getPs4Page: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('ps4page', data)
+  },
+
+  getXboxPage: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('xboxpage', data)
+  },
+
+  getNswPage: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('nswpage', data)
+  },
+
+  getPcmacPage: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('pcmacpage', data)
+  },
+
   /**
    * This function renders the home page
    * @param req - the incoming request containing either the query or body
