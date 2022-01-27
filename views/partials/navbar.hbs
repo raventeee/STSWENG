@@ -4,7 +4,11 @@
 
             <div class="d-flex">
                 <i class="bi bi-controller me-3 mt-2" style="font-size: 3rem; color: #FAF9F6;"></i>
+                {{#if admin}}
+                <a class="navbar-brand text-start fs-1 display-1" href="/admin" style="color: #FAF9F6;">Jet's Game Store</a>
+                {{else}}
                 <a class="navbar-brand text-start fs-1 display-1" href="/" style="color: #FAF9F6;">Jet's Game Store</a>
+                {{/if}}
             </div>
             
 
@@ -34,7 +38,7 @@
                     </div>
 
                     <div class="ms-3">
-                        <a href="/cart">
+                        <a href="/open_cart/{{this.email}}">
                         <button class="btn btn-secondary navBtn btn-lg" type="submit"><i class="bi bi-cart-fill"></i></button>
                         </a>
                     </div>

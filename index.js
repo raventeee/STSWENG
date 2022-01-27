@@ -4,12 +4,14 @@ const bodyParser = require('body-parser')
 const exphbs = require('express-handlebars')
 const path = require('path')
 const favicon = require('serve-favicon')
+const hbsHelpers = require('./helpers/hbsHelpers')
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: '.hbs',
   layoutsDir: path.join(__dirname, 'views/layouts'),
-  partialsDir: path.join(__dirname, 'views/partials')
+  partialsDir: path.join(__dirname, 'views/partials'),
+  helpers: hbsHelpers
 })
 
 const routes = require('./routes/routes')
