@@ -51,8 +51,18 @@ $(document).ready(function () {
           else if (result == '0')
           {
             location.href = '/admin'
-          } else {
-            alert('Invalid credentials')
+          } else if (result == '2') { // Email error: auth/user-not-found
+            alert('User account does not exist!')
+            // remove class is-invalid if exists
+            if ($('#input_email').hasClass('is-invalid')) {
+              $('#input_email').removeClass('is-invalid')
+            }
+            if ($('#input_password').hasClass('is-invalid')) {
+              $('#input_password').removeClass('is-invalid')
+            }
+          }
+          else if (result == '3') { // Password error: 'auth/wrong-password'
+            alert('Password is incorrect!')
             // remove class is-invalid if exists
             if ($('#input_email').hasClass('is-invalid')) {
               $('#input_email').removeClass('is-invalid')

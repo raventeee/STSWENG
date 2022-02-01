@@ -152,7 +152,8 @@ const controller = {
     const user = {}
     db.authLogin(data, function (result) {
       // result is authuser
-      if (result !== false && result !== null) {
+      // Email error: 'auth/user-not-found'  Password error: 'auth/wrong-password'
+      if (result !== 'auth/user-not-found' && result !== 'auth/wrong-password') {
         const email = result.email
         db.getAll('Admin', function (adminresult) {
           let flag = false
@@ -207,8 +208,10 @@ const controller = {
             res.send('2')
           }
         })
-      } else { //if user is not registered
+      } else if (result === 'auth/user-not-found') { //if user is not registered
         res.send('2')
+      } else if (result === 'auth/wrong-password') {
+        res.send('3')
       }
     })
   },

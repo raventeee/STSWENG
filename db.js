@@ -67,7 +67,7 @@ const db = {
       }).catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
-        callback(false)
+        callback(errorCode) // Email error: 'auth/user-not-found'  Password error: 'auth/wrong-password'
         console.log('error in catch')
         console.log(errorCode)
         console.log(errorMessage)
