@@ -1,10 +1,7 @@
 const hbsHelpers = {
   // used in cart page
   computeSubTotal: function (price, qty) {
-    if (price < 0) {
-      return null
-    }
-    if (qty < 0) {
+    if (price < 0 || qty < 0) {
       return null
     }
     return price * qty;
