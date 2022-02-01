@@ -122,6 +122,24 @@ const cartController = {
         }
       });
     }
+  },
+
+  /**
+   * This function edits the cart
+   */
+  editCart: function (req, res) {
+    const productsArr = JSON.parse(req.body.productsArr)
+    const email = req.body.customerEmail
+    const data = {
+      customerCart: productsArr
+    }
+    db.updateOne('Customers', email, data, function (result) {
+      if (result != null && result != undefined) {
+        res.send(true)
+      } else {
+        res.send(false)
+      }
+    });
   }
 }
 

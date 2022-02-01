@@ -31,7 +31,7 @@
             </button>
 
             <div class="form-outline text-center">
-                <input id="form1" min="0" name="quantity" value="{{this.qty}}" type="number"
+                <input id="form1" min="0" max="{{this.productStock}}" name="quantity" value="{{this.qty}}" type="number"
                     class="form-control text-center cartAllQty" />
                 <label class="form-label" for="form1">Quantity</label>
             </div>
@@ -47,6 +47,7 @@
         <h5 id="unit-price" class="text-start text-md-center">Unit Price: PHP {{this.productPrice}}</h5>
         <h5 id="total-price" class="text-start text-md-center subtotal">Subtotal Price: PHP {{computeSubTotal this.productPrice this.qty}}</h5>
         <!-- Price -->
+        <h5 class="product-item" data-productid="{{this.productId}}" data-qty="{{this.qty}}"></h5>
     </div>
 </div>
 <hr class="my-4" />
