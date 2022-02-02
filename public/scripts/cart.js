@@ -1,21 +1,9 @@
 $(document).ready(function () {
     let totalNumItems = 0 // total number of items
     let totalPrice = 0 // overall total price
+    let isChanged = false // designates if the cart is edited
 
     let productsArr = [];
-    /*
-    {
-        productName: 'MLB: The Show 21',
-        productImages: '/assets/the_show_21.jpg',
-        productCategory: 'Game',
-        productPrice: 1500,
-        productStock: 10,
-        productDesc: 'MLB: The Show 21 is a baseball video game based on Major League Baseball',
-        productBrand: 'Sony Interactive Entertainment',
-        productId: 'P000001',
-        qty: 2
-    }
-    */
 
     function computeTotalItems () {
         totalNumItems = 0;
@@ -57,6 +45,12 @@ $(document).ready(function () {
         computeTotalItems()
         // update total price in cart
         computeTotalPrice()
+
+        if (isChanged == false) {
+            isChange = true
+            $('#save_cart').prop('disabled', false)
+            $('#edit_warning').text('You have unsaved changes in your cart!')
+        }
     });
 
     /*
@@ -82,6 +76,12 @@ $(document).ready(function () {
         computeTotalItems()
         // update total price in cart
         computeTotalPrice()
+
+        if (isChanged == false) {
+            isChanged = true
+            $('#save_cart').prop('disabled', false)
+            $('#edit_warning').text('You have unsaved changes in your cart!')
+        }
     });
 
     /*
@@ -123,8 +123,31 @@ $(document).ready(function () {
                 }
             }
         });
+        $('#save_cart').prop('disabled', true)
+        isChanged = false
+        $('#edit_warning').text('')
+    });
+
+    /*
+        This function deletes this product in the cart
+    */
+    $('.delete_product').click(function () {
+        $(this).parent().parent().next().remove()
+        $(this).parent().parent().remove()
+
+        // updates total quantity in cart
+        computeTotalItems()
+        // update total price in cart
+        computeTotalPrice()
+        
+        if (isChanged == false) {
+            isChanged = true
+            $('#save_cart').prop('disabled', false)
+            $('#edit_warning').text('You have unsaved changes in your cart!')
+        }
     });
 
     computeTotalItems() // call function to compute every page refresh
     computeTotalPrice() // call function to compute every page refresh
+    $('#save_cart').prop('disabled', true)
 });
