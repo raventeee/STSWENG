@@ -37,8 +37,9 @@ $(document).ready(function () {
         email: email,
         password: password
       }
-      $('#input_email').val('')
-      $('#input_password').val('')
+
+      $('#email_error').text('')
+      $('#password_error').text('')
   
       $.ajax({
         type: 'POST',
@@ -52,7 +53,9 @@ $(document).ready(function () {
           {
             location.href = '/admin'
           } else if (result == '2') { // Email error: auth/user-not-found
-            alert('User account does not exist!')
+            $('#email_error').text('User account does not exist!')
+            $('#input_email').val('')
+            $('#input_password').val('')
             // remove class is-invalid if exists
             if ($('#input_email').hasClass('is-invalid')) {
               $('#input_email').removeClass('is-invalid')
@@ -62,7 +65,8 @@ $(document).ready(function () {
             }
           }
           else if (result == '3') { // Password error: 'auth/wrong-password'
-            alert('Password is incorrect!')
+            $('#password_error').text('Password is incorrect!')
+            $('#input_password').val('')
             // remove class is-invalid if exists
             if ($('#input_email').hasClass('is-invalid')) {
               $('#input_email').removeClass('is-invalid')
