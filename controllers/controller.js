@@ -98,7 +98,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('home', data)
   },
