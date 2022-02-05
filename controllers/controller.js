@@ -2,6 +2,23 @@ const db = require('../db')
 const customer = require('../models/customer')
 
 const controller = {
+
+  getCheckoutPage: (req, res) => {
+    const data = {
+      styles: ['style'],
+      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      title: "Jet's Game Store" // title of the web page
+    }
+    // checks session, if there is a current logged-in user
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+    }
+    res.render('checkout', data)
+  },
+  
   getPs5Page: (req, res) => {
     const data = {
       styles: ['style'],
