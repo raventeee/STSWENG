@@ -150,7 +150,7 @@ const cartController = {
     const email = req.params.email;
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast', 'cart'],
+      scripts: ['home', 'cart'],
       title: "Jet's Game Store - Cart Page" // title of the web page
     }
     if (db.getAuth.currentUser != null) {
@@ -201,6 +201,109 @@ const cartController = {
           });
         }
       });
+    }
+  },
+
+  /** This function processes the confirmed checkout request by a customer
+   *  assuming the customer's address is still "Null"
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  confirmCheckout: (req, res) => {
+    // check if the currently logged-in user is the same as in the request
+    if (db.getAuth.currentUser != null) {
+      const address = req.query.address
+      const address2 = req.query.address2
+      const country = req.query.country
+      const zip = req.query.zip
+      const region = req.query.region
+      const current_email = req.query.current_email
+      
+      let billing_address = address.concat(address2 + ', ' + region + ', ' + zip + ', ' + country)
+      db.getOne('Customers', current_email, function (result) {
+        if (result !== null) {
+          let customerCart = result.customerCart // get customer's cart, each element is productId, qty
+          let customerTransactions = result.customerTransactions // get customerTransactions array
+          
+          // these would be attributes for one document in Transactions collection
+          let finalProducts = []
+          let totalTransactPrice = 0 // overall total price of this transaction
+          // update the customerAddress and empty the customerCart
+          db.updateOne('Customers', current_email, { customerAddress: billing_address, customerCart: [] }, function (result) {
+            if (result != null && result != undefined) {
+             // update all the product stocks
+             db.getAll('Products', function (result) {
+               // iterate the products
+               let i = 0;
+               result.forEach((element) => {
+                if (customerCart[i].productId != undefined && element.productId == customerCart[i].productId) {
+                  element.productStock = element.productStock - customerCart[i].qty // subtract stock by qty in cart
+                  db.updateOne('Products', element.productId, { productStock: element.productStock }, function(res) {}); // update the document
+                  
+                  // add to finalProducts array
+                  if (element.productDiscounted == true) {
+                    let tempPrice = element.productPrice - element.productDisprice
+                    let tempProduct = {
+                      price: tempPrice,
+                      productId: element.productId,
+                      quantity: customerCart.qty,
+                      totalPrice: tempPrice * customerCart[i].qty
+                    }
+
+                    totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
+                    finalProducts.push(tempProduct) // add to finalProducts array
+                    customerTransactions.push(element.productId)
+
+                  } else if (element.productDiscounted == false) {
+                    let tempProduct = {
+                      price: element.productPrice,
+                      productId: element.productId,
+                      quantity: customerCart[i].qty,
+                      totalPrice: element.productPrice * customerCart[i].qty
+                    }
+
+                    totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
+                    finalProducts.push(tempProduct) // add to finalProducts array
+                    customerTransactions.push(element.productId)
+                  }
+                  i++; // increment ctr for customerCart
+                }
+               });
+               // update customerTransaction
+               db.updateOne('Customers', current_email, { customerTransactions: customerTransactions }, function (res) {})
+
+               const data = {
+                 finalProducts: finalProducts,
+                 totalTransactPrice: totalTransactPrice
+               }
+               console.log(data)
+               // insert the transaction to Transactions collection
+               db.getAll('Transactions', function (result) {
+                if (result !== null) {
+                  let size = result.length
+                  size = size + 1000000
+                  size = size.toString() // '1000006'
+                  size = size.substring(1, size.length) // '000006'
+                  size = 'T' + size
+                  db.insert('Transactions', size, data, function (result) {
+                    if (result !== null) {
+                      res.redirect('/')
+                    } else {
+                      res.send(false)
+                    }
+                  })
+                }
+               });
+
+             });
+            } else {
+              console.log('error')
+            }
+          });
+        }
+      });
+    } else {
+      res.render('error')
     }
   }
 }

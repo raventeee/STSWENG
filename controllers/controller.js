@@ -6,7 +6,7 @@ const controller = {
   getCheckoutPage: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['home', 'checkout'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -14,9 +14,16 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+      db.getOne('Customers', data.user.email, function (result) {
+        // check if customer's address is still 'Null'
+        if (result != null && result.customerAddress != 'Null') {
+          res.render('checkout', data)
+        } else if (result != null && result.customerAddress == 'Null') {
+          res.render('checkout', data)
+        }
+      });
     }
-    res.render('checkout', data)
   },
   
   getPs5Page: (req, res) => {
@@ -30,7 +37,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('ps5page', data)
   },
@@ -46,7 +55,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('ps4page', data)
   },
@@ -62,7 +73,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('xboxpage', data)
   },
@@ -78,7 +91,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('nswpage', data)
   },
@@ -94,7 +109,9 @@ const controller = {
       data.user = {
         email: db.getAuth.currentUser.providerData[0].email
       }
-      data.isLoggedIn = true
+      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
+    } else {
+      data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
     res.render('pcmacpage', data)
   },

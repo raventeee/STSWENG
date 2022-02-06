@@ -117,9 +117,15 @@ $(document).ready(function () {
             url: '/saveCart',
             success: function (result) {
                 if (result) {
-                    alert('Cart saved successfully')
+                    $('#cart_saved').modal('show')
+                    setTimeout(function() {
+                        $('#cart_saved').modal('hide');
+                    }, 1500)
                 } else {
-                    alert('Cart save error')
+                    $('#cart_not_saved').modal('show')
+                    setTimeout(function() {
+                        $('#cart_not_saved').modal('hide');
+                    }, 1500)
                 }
             }
         });

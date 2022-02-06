@@ -6,7 +6,9 @@ const product = {
   images: 'productImages',
   prodName: 'productName',
   price: 'productPrice',
-  stock: 'productStock'
+  stock: 'productStock',
+  isDiscounted: 'productDiscounted',
+  disPrice: 'productDisprice'
 }
 
 module.exports = product

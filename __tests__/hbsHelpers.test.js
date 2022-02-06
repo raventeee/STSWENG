@@ -1,5 +1,5 @@
 const { computeSubTotal } = require('../helpers/hbsHelpers')
-const { convertFloat } = require('../helpers/hbsHelpers')
+const { convertFloat, isCartEmpty } = require('../helpers/hbsHelpers')
 
 describe('Helper function "computeSubTotal": this function should compute a subtotal price by multiplying the two parameters quantity and price', () => {
   test('Given: price = 1500, qty = 39. Expected subtotal: 58500', () => {
@@ -130,5 +130,89 @@ describe('Helper function "computeSubTotal": this function converts the price in
 
     // (3) Assert
     expect(converted).toBeNull()
+  })
+})
+
+describe('Helper function "isCartEmpty": this function returns true if cart array is empty, otherwise false.', () => {
+  test('Given: empty cart, expected value should be true', () => {
+    // (1) Arrange
+    const cart = []
+
+    // (2) Act
+    const bool = isCartEmpty(cart)
+
+    // (3) Assert
+    expect(bool).toEqual(true)
+  })
+
+  test('Given: cart array with 2 elements, expected value should be true', () => {
+    // (1) Arrange
+    const cart = [1,2]
+
+    // (2) Act
+    const bool = isCartEmpty(cart)
+
+    // (3) Assert
+    expect(bool).toEqual(false)
+  })
+
+  test('Given: cart array with 12 elements, expected value should be true', () => {
+    // (1) Arrange
+    const cart = [
+      {
+        productId: 'P000001',
+        productStock: 20
+      },
+      {
+        productId: 'P000002',
+        productStock: 20
+      },
+      {
+        productId: 'P000003',
+        productStock: 20
+      },
+      {
+        productId: 'P000004',
+        productStock: 20
+      },
+      {
+        productId: 'P000005',
+        productStock: 20
+      },
+      {
+        productId: 'P000006',
+        productStock: 20
+      },
+      {
+        productId: 'P000007',
+        productStock: 20
+      },
+      {
+        productId: 'P000008',
+        productStock: 20
+      },
+      {
+        productId: 'P000009',
+        productStock: 20
+      },
+      {
+        productId: 'P000010',
+        productStock: 20
+      },
+      {
+        productId: 'P000011',
+        productStock: 20
+      },
+      {
+        productId: 'P000012',
+        productStock: 20
+      }
+    ]
+
+    // (2) Act
+    const bool = isCartEmpty(cart)
+
+    // (3) Assert
+    expect(bool).toEqual(false)
   })
 })

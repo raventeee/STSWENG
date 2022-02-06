@@ -8,8 +8,8 @@ const hbsHelpers = {
   },
 
   // used in cart page for number of items
-  countCartItems: function (cartItems) {
-    return cartItems.length;
+  isCartEmpty: function (cartItems) {
+    return cartItems.length == 0;
   },
 
   // used in cart page for rendering unit price

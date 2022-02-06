@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-6 order-md-1">
           <h4 class="mb-3 mt-5">Contact information</h4>
-          <form class="needs-validation" novalidate="" method="GET" action="/confirm_checkout/{{user.email}}">
+          <form class="needs-validation" method="GET" action="/confirm_checkout">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="first_name">First name</label>
@@ -63,7 +63,7 @@
               <div class="col-md-5 mb-3">
                 <label for="country">Country</label>
                 <div class="mb-3">
-                  <input type="text" class="form-control" id="country" name="country" placeholder="Philippines" readonly>
+                  <input type="text" class="form-control" id="country" name="country" placeholder="Philippines" value="Philippines" readonly>
                 </div>
               </div>
               <div class="col-md-4 mb-3">
@@ -84,19 +84,19 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="gcash" name="gcash" type="radio" class="custom-control-input" checked="" required="">
+                <input id="gcash" name="gcash" type="radio" class="custom-control-input" checked="">
                 <label class="custom-control-label" for="gcash">GCash</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="bank_transfer" name="bank_transfer" type="radio" class="custom-control-input" required="">
+                <input id="bank_transfer" name="bank_transfer" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="bank_transfer">Bank Transfer</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paypal" type="radio" class="custom-control-input" required="">
+                <input id="paypal" name="paypal" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="paypal">Paypal</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paymaya" name="paymaya" type="radio" class="custom-control-input" required="">
+                <input id="paymaya" name="paymaya" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="paymaya">Paymaya</label>
               </div>
             </div>
@@ -118,6 +118,7 @@
               </div>
             </div>
             <hr class="mb-4">
+            <input type="text" value="{{user.email}}" name="current_email" hidden/>
             <button id="confirm_checkout" class="bg-danger btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
           </form>
         </div>
