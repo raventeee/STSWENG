@@ -70,7 +70,7 @@ const cartController = {
     const email = req.params.email;
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast', 'cart'],
+      scripts: ['addCart', 'home', 'register', 'login', 'cart'],
       title: "Jet's Game Store - Cart Page" // title of the web page
     }
     if (db.getAuth.currentUser != null) {
@@ -298,7 +298,7 @@ const cartController = {
                // iterate the products
                let i = 0;
                result.forEach((element) => {
-                if (customerCart[i].productId != undefined && element.productId == customerCart[i].productId) {
+                if (i < customerCart.length && element.productId == customerCart[i].productId) {
                   element.productStock = element.productStock - customerCart[i].qty // subtract stock by qty in cart
                   db.updateOne('Products', element.productId, { productStock: element.productStock }, function(res) {}); // update the document
                   
