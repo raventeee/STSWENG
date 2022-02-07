@@ -37,7 +37,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <label for="email">Email <span class="text-muted"></span></label>
               <input type="email" class="form-control" id="email" name="email" placeholder="juandelacruz@example.com" required=""> 
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
@@ -84,19 +84,19 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="gcash" name="gcash" type="radio" class="custom-control-input" checked="">
+                <input id="gcash" name="payment" type="radio" class="custom-control-input" checked="">
                 <label class="custom-control-label" for="gcash">GCash</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="bank_transfer" name="bank_transfer" type="radio" class="custom-control-input">
+                <input id="bank_transfer" name="payment" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="bank_transfer">Bank Transfer</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paypal" name="paypal" type="radio" class="custom-control-input">
+                <input id="paypal" name="payment" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="paypal">Paypal</label>
               </div>
               <div class="custom-control custom-radio">
-                <input id="paymaya" name="paymaya" type="radio" class="custom-control-input">
+                <input id="paymaya" name="payment" type="radio" class="custom-control-input">
                 <label class="custom-control-label" for="paymaya">Paymaya</label>
               </div>
             </div>
@@ -117,39 +117,69 @@
                 </div>
               </div>
             </div>
-            <hr class="mb-4">
             <input type="text" value="{{user.email}}" name="current_email" hidden/>
             <button id="confirm_checkout" class="bg-danger btn btn-primary btn-lg btn-block" type="submit">Confirm</button>
           </form>
         </div>
+
+        
+        <!-- Cart -->
+        <div class="col-md-6 mt-5">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Cart</h5>
+                </div>
+
+                <div class="card-body">
+                    {{!-- 
+                        display each cart product from database
+                        cartProducts -> array of objects each containing a product with attributes (sample):
+                            productName: 'Call of Duty: Black Ops Cold War',
+                            productImages: '/assets/cod_black_ops_cold_war.jpg',
+                            productCategory: 'Game',
+                            productPrice: 1500,
+                            productStock: 10,
+                            productDesc: 'Call of Duty: Black Ops Cold War is a 2020 first-person video game published by Activision',
+                            productBrand: 'Activision',
+                            productId: 'P000000',
+                            qty: 39
+                    --}}
+                    {{#each cartProducts}}
+                        {{> cart_single_item this}}
+                    {{/each}}
+                </div>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header py-3">
+                    <h5 class="mb-0">Summary</h5>
+                </div>
+
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                            <p>Number of items</p>
+                            <p class="fw-bold" id="number-of-items">2 items</p>
+                        </li>
+
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                            <p>Total Amount </p>
+                            <p class="fw-bold" id="total-amount">PHP 3000</p>
+                        </li>
+                    </ul>
+                    <button id="save_cart" type="button" class="btn btn-danger btn-lg btn-block">Save Cart</button>
+                    <p id="edit_warning" style="color: red;font-size: 15pt;"></p>
+                </div>
+        </div>
+        <!-- Cart -->
       </div>
     </div>
+  </div>
+
+
 
     
 
 {{>footer}}
-
-
-<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function() {
-    'use strict';
-
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  })();
-</script>

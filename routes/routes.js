@@ -23,8 +23,8 @@ app.get('/nswpage', controller.getNswPage)
 app.get('/pcmacpage', controller.getPcmacPage)
 app.get('/adminTransactions', adminController.getAllTransactions)
 app.get('/orderstatus/:email', cartController.openOrderStatus)
-app.get('/checkout', controller.getCheckoutPage)
 app.get('/confirm_checkout', cartController.confirmCheckout)
+app.get('/checkout/:email', cartController.openCheckoutPage)
 
 
 // POST requests

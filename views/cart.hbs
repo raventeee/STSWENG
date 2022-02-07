@@ -1,3 +1,5 @@
+{{> toasts}}
+
 <!-- NAVBAR START -->
 {{>navbar user}}
 
@@ -70,7 +72,7 @@
                     {{#if (isCartEmpty cartProducts)}}
                         <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Go to checkout</button>
                     {{else}}
-                        <a href="/checkout"><button type="button" class="btn btn-danger btn-lg btn-block">Go to checkout</button></a>
+                        <a href="/checkout/{{user.email}}"><button type="button" class="btn btn-danger btn-lg btn-block">Go to checkout</button></a>
                     {{/if}}
                     <p id="edit_warning" style="color: red;font-size: 15pt;"></p>
                 </div>

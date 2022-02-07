@@ -151,7 +151,7 @@ const cartController = {
     const data = {
       styles: ['style'],
       scripts: ['home', 'cart'],
-      title: "Jet's Game Store - Cart Page" // title of the web page
+      title: "Jet's Game Store - Order Status" // title of the web page
     }
     if (db.getAuth.currentUser != null) {
       data.user = {
@@ -195,6 +195,68 @@ const cartController = {
               console.log(cartProducts);
               data.cartProducts = cartProducts;
               res.render('orderstatus', data); // render the view
+            } else {
+              data.cartProducts = []
+            }
+          });
+        }
+      });
+    }
+  },
+
+  /** This function opens the check out page with cart
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+   openCheckoutPage: (req, res) => {
+    const email = req.params.email;
+    const data = {
+      styles: ['style'],
+      scripts: ['home', 'cart'],
+      title: "Jet's Game Store - Cart Page" // title of the web page
+    }
+    if (db.getAuth.currentUser != null) {
+      data.user = {
+        email: db.getAuth.currentUser.providerData[0].email
+      }
+      data.isLoggedIn = true
+      db.getOne('Customers', email, function (result) {
+        if (result !== null) {
+          const customerCart = result.customerCart;
+          const prodIds = customerCart.map((element) => { return element.productId });
+          // console.log(customerCart);
+          // console.log(prodIds);
+          let cartProducts = [];
+          db.getAll('Products', function (result) {
+            if (result) {
+              // retrieves the products inside the cart
+              result.forEach((element) => {
+                if (prodIds.includes(element.productId)) {
+                  let item = {
+                    productName: element.productName,
+                    productImages: element.productImages[0],
+                    productCategory: element.productCategory,
+                    productPrice: element.productPrice,
+                    productStock: element.productStock,
+                    productDesc: element.productDesc,
+                    productBrand: element.productBrand,
+                    productId: element.productId
+                  };
+                  // iterates customerCart and inserts the qty in cart
+                  customerCart.every((elem) => {
+                    if (elem.productId == item.productId) {
+                      item.qty = elem.qty;
+                      return false;
+                    } else {
+                      return true;
+                    }
+                  });
+                  cartProducts.push(item);
+                }
+              });
+              console.log(cartProducts);
+              data.cartProducts = cartProducts;
+              res.render('checkout', data); // render the view
             } else {
               data.cartProducts = []
             }
@@ -305,7 +367,7 @@ const cartController = {
     } else {
       res.render('error')
     }
-  }
+  },
 }
 
 module.exports = cartController

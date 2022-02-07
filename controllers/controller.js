@@ -2,30 +2,11 @@ const db = require('../db')
 const customer = require('../models/customer')
 
 const controller = {
-
-  getCheckoutPage: (req, res) => {
-    const data = {
-      styles: ['style'],
-      scripts: ['home', 'checkout'],
-      title: "Jet's Game Store" // title of the web page
-    }
-    // checks session, if there is a current logged-in user
-    if (db.getAuth.currentUser != null) {
-      data.user = {
-        email: db.getAuth.currentUser.providerData[0].email
-      }
-      data.isLogged = { loggedIn: true,  loggedOut: false} // logged in
-      db.getOne('Customers', data.user.email, function (result) {
-        // check if customer's address is still 'Null'
-        if (result != null && result.customerAddress != 'Null') {
-          res.render('checkout', data)
-        } else if (result != null && result.customerAddress == 'Null') {
-          res.render('checkout', data)
-        }
-      });
-    }
-  },
-  
+  /**
+   * This function renders the ps5 page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
   getPs5Page: (req, res) => {
     const data = {
       styles: ['style'],
@@ -44,6 +25,11 @@ const controller = {
     res.render('ps5page', data)
   },
 
+  /**
+   * This function renders the ps4 page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
   getPs4Page: (req, res) => {
     const data = {
       styles: ['style'],
@@ -80,6 +66,11 @@ const controller = {
     res.render('xboxpage', data)
   },
 
+  /**
+   * This function renders the nsw page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
   getNswPage: (req, res) => {
     const data = {
       styles: ['style'],
@@ -98,6 +89,12 @@ const controller = {
     res.render('nswpage', data)
   },
 
+  
+  /**
+   * This function renders the pc/mac page
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
   getPcmacPage: (req, res) => {
     const data = {
       styles: ['style'],
