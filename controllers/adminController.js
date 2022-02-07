@@ -58,6 +58,44 @@ const adminController = {
       }
     })
   },
+
+  postAllProducts: (req, res) => {
+    const data = req.body
+    db.getAll('Products', function (result) {
+      let i = 0
+      if (result !== null) {
+        console.log(result)
+        res.send(result)
+      }
+    })
+  },
+
+  postAllTransactions: (req, res) => {
+    const data = req.body
+    db.getAll('Transactions', function (result) {
+      let i = 0
+      if (result !== null) {
+        console.log(result)
+        res.send(result)
+      }
+    })
+  },
+
+  postDiscountItem: (req, res) => {
+    const data = req.body
+    data.productDisprice = parseFloat(data.productDisprice)
+    data.productDiscounted = Boolean(data.productDiscounted)
+    console.log(data)
+    db.updateOne('Products',data.productId, data, function(result){
+      if (result !== null)
+      {
+        console.log(result)
+        res.send(result)
+      }
+    })
+  },
+
+
   /**
    * This function adds a product entered by an admin
    * @param req - the incoming request containing either the query or body
