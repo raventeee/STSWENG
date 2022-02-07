@@ -68,11 +68,11 @@
                         </li>
                     </ul>
 
-                    <button id="save_cart" type="button" class="btn btn-danger btn-lg btn-block">Save Cart</button>
+                    <button id="save_cart" type="button" class="btn btn-success btn-lg btn-block">Save Cart</button>
                     {{#if (isCartEmpty cartProducts)}}
-                        <button type="button" class="btn btn-danger btn-lg btn-block" disabled>Go to checkout</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" disabled>Go to checkout</button>
                     {{else}}
-                        <a href="/checkout/{{user.email}}"><button type="button" class="btn btn-danger btn-lg btn-block">Go to checkout</button></a>
+                        <a href="/checkout/{{user.email}}"><button type="button" class="btn btn-primary btn-lg btn-block">Go to checkout</button></a>
                     {{/if}}
                     <p id="edit_warning" style="color: red;font-size: 15pt;"></p>
                 </div>
