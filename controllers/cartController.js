@@ -336,7 +336,8 @@ const cartController = {
 
                const data = {
                  finalProducts: finalProducts,
-                 totalTransactPrice: totalTransactPrice
+                 totalTransactPrice: totalTransactPrice,
+                 orderStatus: 'Payment Pending'
                }
                console.log(data)
                // insert the transaction to Transactions collection
@@ -347,6 +348,7 @@ const cartController = {
                   size = size.toString() // '1000006'
                   size = size.substring(1, size.length) // '000006'
                   size = 'T' + size
+                  data.transactId = size
                   db.insert('Transactions', size, data, function (result) {
                     if (result !== null) {
                       res.redirect('/')
