@@ -153,6 +153,46 @@ $(document).ready(function () {
         }
     });
 
+    /* CHECKOUT PAGE FUNCTIONS */
+    /*
+        This function unchecks other radio button if gcash radio button is clicked
+    */
+    $('#gcash').click(function () {
+        $('#bank_transfer').prop('checked', false)
+        $('#paypal').prop('checked', false)
+        $('#paymaya').prop('checked', false)
+    });
+
+    /*
+        This function unchecks other radio button if bank_transfer radio button is clicked
+    */
+    $('#bank_transfer').click(function () {
+        $('#gcash').prop('checked', false)
+        $('#paypal').prop('checked', false)
+        $('#paymaya').prop('checked', false)
+    });
+
+    /*
+        This function unchecks other radio button if paypal radio button is clicked
+    */
+    $('#paypal').click(function () {
+        $('#gcash').prop('checked', false)
+        $('#bank_transfer').prop('checked', false)
+        $('#paymaya').prop('checked', false)
+    });
+
+    /*
+        This function unchecks other radio button if paypal radio button is clicked
+    */
+    $('#paymaya').click(function () {
+        $('#gcash').prop('checked', false)
+        $('#bank_transfer').prop('checked', false)
+        $('#paypal').prop('checked', false)
+    });
+
+    
+    /* CHECKOUT PAGE FUNCTIONS END */
+    
     computeTotalItems() // call function to compute every page refresh
     computeTotalPrice() // call function to compute every page refresh
     $('#save_cart').prop('disabled', true)

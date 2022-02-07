@@ -274,14 +274,35 @@ const cartController = {
   confirmCheckout: (req, res) => {
     // check if the currently logged-in user is the same as in the request
     if (db.getAuth.currentUser != null) {
+      const firstName = req.query.first_name
+      const lastName = req.query.last_name
+      const billing_email = req.query.email
       const address = req.query.address
       const address2 = req.query.address2
       const country = req.query.country
       const zip = req.query.zip
       const region = req.query.region
       const current_email = req.query.current_email
-      
-      let billing_address = address.concat(address2 + ', ' + region + ', ' + zip + ', ' + country)
+      const gcash = req.query.gcash
+      const bank_transfer = req.query.bank_transfer
+      const paypal = req.query.paypal
+      const paymaya = req.query.paymaya
+      const account_name = req.query.name_on_account
+      const account_num = req.query.account_number_email_mob
+
+      let payment = 'Gcash'
+      if (gcash == 'on') {
+        payment = 'Gcash'
+      } else if (bank_transfer == 'on') {
+        payment = 'Bank Transfer'
+      } else if (paypal == 'on') {
+        payment = 'Paypal'
+      } else if (paymaya == 'on') {
+        payment = 'Paymaya'
+      }
+
+      let billing_name = firstName.concat(' ' + lastName)
+      let billing_address = address.concat(' ' + address2 + ', ' + region + ', ' + zip + ', ' + country)
       db.getOne('Customers', current_email, function (result) {
         if (result !== null) {
           let customerCart = result.customerCart // get customer's cart, each element is productId, qty
@@ -314,7 +335,7 @@ const cartController = {
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
                     finalProducts.push(tempProduct) // add to finalProducts array
-                    customerTransactions.push(element.productId)
+                    
 
                   } else if (element.productDiscounted == false) {
                     let tempProduct = {
@@ -326,18 +347,23 @@ const cartController = {
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
                     finalProducts.push(tempProduct) // add to finalProducts array
-                    customerTransactions.push(element.productId)
+                    
                   }
                   i++; // increment ctr for customerCart
                 }
                });
-               // update customerTransaction
-               db.updateOne('Customers', current_email, { customerTransactions: customerTransactions }, function (res) {})
-
+               
+               // ready the transaction/order data
                const data = {
                  finalProducts: finalProducts,
                  totalTransactPrice: totalTransactPrice,
-                 orderStatus: 'Payment Pending'
+                 orderStatus: 'Payment Pending',
+                 payment: payment,
+                 billing_address: billing_address,
+                 billing_name: billing_name,
+                 billing_email: billing_email,
+                 account_name: account_name,
+                 account_num: account_num
                }
                console.log(data)
                // insert the transaction to Transactions collection
@@ -349,6 +375,9 @@ const cartController = {
                   size = size.substring(1, size.length) // '000006'
                   size = 'T' + size
                   data.transactId = size
+                  customerTransactions.push(data.transactId)
+                  // update customerTransaction
+                  db.updateOne('Customers', current_email, { customerTransactions: customerTransactions }, function (res) {})
                   db.insert('Transactions', size, data, function (result) {
                     if (result !== null) {
                       res.redirect('/')
