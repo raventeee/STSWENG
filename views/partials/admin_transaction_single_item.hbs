@@ -1,0 +1,66 @@
+<!--One Entry-->
+<tr>
+    <td class="tid">{{this.transactId}}</td>
+    <td>
+        {{#each this.prodIds}}
+        <ul>{{this}}</ul>
+        {{/each}}
+    </td>
+    <td>
+        {{#each this.prodNames}}
+        <ul>{{this}}</ul>
+        {{/each}}
+    </td>
+    <td>
+        {{#each this.prodQuantities}}
+
+        {{/each}}
+    </td>
+    <td>{{this.totalPrice}}</td>
+    <td>
+        {{#if (isPaymentPending this.status)}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending" selected>Payment Pending</option>
+            <option value="Payment Successful">Payment Successful</option>
+            <option value="To Be Shipped">To Be Shipped</option>
+            <option value="On Transit">On Transit</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+        {{else if (isPaymentSuccessful this.status)}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending">Payment Pending</option>
+            <option value="Payment Successful" selected>Payment Successful</option>
+            <option value="To Be Shipped">To Be Shipped</option>
+            <option value="On Transit">On Transit</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+
+        {{else if (isToBeShipped this.status)}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending">Payment Pending</option>
+            <option value="Payment Successful">Payment Successful</option>
+            <option value="To Be Shipped" selected>To Be Shipped</option>
+            <option value="On Transit">On Transit</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+
+        {{else if (isOnTransit this.status)}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending">Payment Pending</option>
+            <option value="Payment Successful">Payment Successful</option>
+            <option value="To Be Shipped">To Be Shipped</option>
+            <option value="On Transit" selected>On Transit</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+        {{else}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending">Payment Pending</option>
+            <option value="Payment Successful">Payment Successful</option>
+            <option value="To Be Shipped">To Be Shipped</option>
+            <option value="On Transit">On Transit</option>
+            <option value="Delivered" selected>Delivered</option>
+        </select>
+        {{/if}}
+    </td>
+</tr>
+<!--One Entry-->
