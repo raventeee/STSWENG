@@ -84,7 +84,7 @@
 
             <div class="d-block my-3">
               <div class="custom-control custom-radio">
-                <input id="gcash" name="gcash" type="radio" class="custom-control-input" checked="">
+                <input data-bs-toggle="modal" data-bs-target="#gcashModal" id="gcash" name="gcash" type="radio" class="custom-control-input" checked="">
                 <label class="custom-control-label" for="gcash">GCash</label>
               </div>
               <div class="custom-control custom-radio">
@@ -100,6 +100,79 @@
                 <label class="custom-control-label" for="paymaya">Paymaya</label>
               </div>
             </div>
+
+
+            <br>
+            <div class="container accordion" id="paymentAccordion" style="margin-bottom: 5%;">
+              <div class="accordion-item">
+                  <h3 class="accordion-header" id="headerOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gcashCollapse" aria-expanded="false" aria-controls="gcashCollapse">
+                          <strong>GCash</strong>
+                      </button>
+                  </h3>
+              </div>
+
+              <div id="gcashCollapse" class="accordion-collapse collapse" aria-labelledby="headerOne" data-bs-parent="#paymentAccordion">
+                  <div class="accordion-body">
+                      <ul>
+                          <li><em>Account/mobile number: 09482859284</em></li>
+                          <li><em>Account name: Jet G.</em></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="accordion-item">
+                  <h3 class="accordion-header" id="headerTwo">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bankTransferCollapse" aria-expanded="false" aria-controls="gcashCollapse">
+                          <strong>Bank Transfer</strong>
+                      </button>
+                  </h3>
+              </div>
+
+              <div id="bankTransferCollapse" class="accordion-collapse collapse aria-labelledby="headerTwo"" data-bs-parent="#paymentAccordion">
+                  <div class="accordion-body">
+                      <ul>
+                          <li><em>Account number: 1412 2451 1241 2412</em></li>
+                          <li><em>Account name: Jet G.</em></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="accordion-item">
+                  <h3 class="accordion-header" id="headerThree">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paypalCollapse" aria-expanded="false" aria-controls="gcashCollapse">
+                          <strong>Paypal</strong>
+                      </button>
+                  </h3>
+              </div>
+
+              <div id="paypalCollapse" class="accordion-collapse collapse aria-labelledby="headerThree"" data-bs-parent="#paymentAccordion">
+                  <div class="accordion-body">
+                      <ul>
+                          <li><em>Email: jetg@gmail.com</em></li>
+                          <li><em>Account name: Jet G.</em></li>
+                      </ul>
+                  </div>
+              </div>
+
+              <div class="accordion-item">
+                  <h3 class="accordion-header" id="headerFour">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#paymayaCollapse" aria-expanded="false" aria-controls="gcashCollapse">
+                          <strong>Paypal</strong>
+                      </button>
+                  </h3>
+              </div>
+
+              <div id="paymayaCollapse" class="accordion-collapse collapse aria-labelledby="headerFour"" data-bs-parent="#paymentAccordion">
+                  <div class="accordion-body">
+                      <ul>
+                          <li><em>Account number: 0982658472</em></li>
+                          <li><em>Account name: Jet G.</em></li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="name_on_account">Name on account</label>
