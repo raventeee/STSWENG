@@ -134,7 +134,23 @@ const adminController = {
           }
           if (flag) {
             db.getAll('Products', function (result) {
-              data.products = result;
+              let products = []
+              result.forEach((element) => {
+                let item = {
+                  productName: element.productName,
+                  productImages: element.productImages[0],
+                  productCategory: element.productCategory,
+                  productPrice: element.productPrice,
+                  productStock: element.productStock,
+                  productDesc: element.productDesc,
+                  productBrand: element.productBrand,
+                  productId: element.productId,
+                  productDiscounted: element.productDiscounted,
+                  productDisprice: element.productDisprice
+                };
+                products.push(item)
+              })
+              data.products = products;
               res.render('admin-products',data);
             });
           } else {
