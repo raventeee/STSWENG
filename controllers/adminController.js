@@ -94,6 +94,18 @@ const adminController = {
       }
     })
   },
+  updateStatus: (req, res) => {
+    const data = req.body
+    console.log("HERE")
+    console.log(data.transactId)
+    db.updateOne('Transactions',data.transactId, data, function(result){
+      if (result !== null)
+      {
+        console.log(result)
+        res.send(result)
+      }
+    })
+  },
 
 
   /**
