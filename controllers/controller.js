@@ -319,6 +319,7 @@ const controller = {
         user[customer.gender] = req.body.gender
         user[customer.cart] = []
         user[customer.transactions] = []
+        user.isOrdered = false
         // insert customer to Customers collection
         db.insert('Customers', email, user, function (result) {
           if (result) {

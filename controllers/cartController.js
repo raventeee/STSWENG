@@ -162,30 +162,28 @@ const cartController = {
         if (result !== null) {
           const customerTransactions = result.customerTransactions; // array of transactId
           // console.log(customerTransactions);
-          let transaction = {};
+          let transactions = [];
           db.getAll('Transactions', function (result) {
             if (result) {
               // retrieves the transactions
-              result.every((element) => {
-                if (customerTransactions.includes(element.transactId) && element.orderStatus == 'Payment Pending') {
-                  transaction = {
-                    finalProducts: element.finalProducts
-                  };
-                  data.orderStatus = element.orderStatus
-                  data.payment = element.payment
-                  data.totalTransactPrice = element.totalTransactPrice
-                  data.transactId = element.transactId
-                  return false; // stop iterating
-                } else {
-                  return true; // continue iterating
+              result.forEach((element) => {
+                if (customerTransactions.includes(element.transactId)) {
+                  let item = {
+                    finalProducts: element.finalProducts,
+                    orderStatus: element.orderStatus,
+                    payment: element.payment,
+                    totalTransactPrice: element.totalTransactPrice,
+                    transactId: element.transactId
+                  }
+                  transactions.push(item)
                 }
               });
-              console.log(transaction);
-              data.transaction = transaction
-              // TO CONTINUE
-              res.render('orderstatus', data); // render the view
+              
+              data.transactions = transactions
+              console.log(data)
+              res.render('orderstatus', data)
             } else {
-              data.cartProducts = []
+              data.transactProducts = []
             }
           });
         }
@@ -301,7 +299,7 @@ const cartController = {
           let finalProducts = []
           let totalTransactPrice = 0 // overall total price of this transaction
           // update the customerAddress and empty the customerCart
-          db.updateOne('Customers', current_email, { customerAddress: billing_address, customerCart: [] }, function (result) {
+        db.updateOne('Customers', current_email, { customerAddress: billing_address, customerCart: []/*, isOrdered: true*/ }, function (result) {
             if (result != null && result != undefined) {
              // update all the product stocks
              db.getAll('Products', function (result) {
@@ -314,12 +312,14 @@ const cartController = {
                   
                   // add to finalProducts array
                   if (element.productDiscounted == true) {
-                    let tempPrice = element.productPrice - element.productDisprice
+                    let tempPrice = element.productDisprice
                     let tempProduct = {
                       price: tempPrice,
                       productId: element.productId,
-                      quantity: customerCart.qty,
-                      totalPrice: tempPrice * customerCart[i].qty
+                      quantity: customerCart[i].qty,
+                      totalPrice: tempPrice * customerCart[i].qty,
+                      productName: element.productName,
+                      productImages: element.productImages[0]
                     }
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
@@ -331,7 +331,9 @@ const cartController = {
                       price: element.productPrice,
                       productId: element.productId,
                       quantity: customerCart[i].qty,
-                      totalPrice: element.productPrice * customerCart[i].qty
+                      totalPrice: element.productPrice * customerCart[i].qty,
+                      productName: element.productName,
+                      productImages: element.productImages[0]
                     }
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
@@ -366,6 +368,7 @@ const cartController = {
                   data.transactId = size
                   customerTransactions.push(data.transactId)
                   // update customerTransaction
+                  console.log(data)
                   db.updateOne('Customers', current_email, { customerTransactions: customerTransactions }, function (res) {})
                   db.insert('Transactions', size, data, function (result) {
                     if (result !== null) {
@@ -388,6 +391,14 @@ const cartController = {
       res.render('error')
     }
   },
+
+  /** This function opens the check out page with cart
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  openTransactHistory: (req, res) => {
+
+  }
 }
 
 module.exports = cartController
