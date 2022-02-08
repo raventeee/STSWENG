@@ -150,7 +150,7 @@ const cartController = {
     const email = req.params.email;
     const data = {
       styles: ['style'],
-      scripts: ['home', 'cart'],
+      scripts: ['home'],
       title: "Jet's Game Store - Order Status" // title of the web page
     }
     if (db.getAuth.currentUser != null) {

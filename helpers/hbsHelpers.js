@@ -12,6 +12,10 @@ const hbsHelpers = {
     return cartItems.length == 0;
   },
 
+  lengthFunc: function(array) {
+    return array.length
+  },
+
   // used in cart page for rendering unit price
   convertFloat: function (price) {
     if (price < 0) {
