@@ -49,6 +49,20 @@ const controller = {
     });
   },
 
+  getOriginalPrice:(req,res) =>
+  {
+    const data = req.body
+
+    db.getOne("Products",data.productId,function(result){
+
+      res.send(result)
+
+    });
+  },
+
+
+
+
   /**
    * This function renders the ps4 page
    * @param req - the incoming request containing either the query or body

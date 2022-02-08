@@ -115,7 +115,7 @@ const adminController = {
   getAdminProductsPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-product-data-table', 'sidebar', 'admin-toast'],
+      scripts: ['admin-product-data-table', 'sidebar', 'admin-toast','admin-product-modal'],
       title: "Products Page"
     }
     

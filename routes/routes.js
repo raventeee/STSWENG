@@ -42,5 +42,6 @@ app.post('/postDiscountItem', adminController.postDiscountItem)
 app.post('/checkEmail', controller.checkEmail)
 app.post('/postAddProduct', adminController.postAddProduct)
 app.post('/saveCart', cartController.editCart)
+app.post('/getOriginalPrice', controller.getOriginalPrice)
 
 module.exports = app
