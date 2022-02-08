@@ -1,10 +1,15 @@
  <!--One Entry-->
- <tr id="{{this.prodId}}">
-     <td class="pid">{{this.prodId}}</td>
-     <td class="pName">{{this.prodName}}</td>
-     <td class="pPrice" id="price">{{this.prodPrice}}</td>
+ <tr id="{{this.productId}}">
+     <td class="pid">{{this.productId}}</td>
+     <td class="pName">{{this.productName}}</td>
+     {{#if this.productDiscounted}}
+     <td class="pPrice" id="price">{{this.productDisprice}}</td>
+     {{else}}
+     <td class="pPrice" id="price">{{this.productPrice}}</td>
+     {{/if}}
+     
      <td class="pButtons">
-         {{#if isDiscounted}}
+         {{#if this.productDiscounted}}
          <button type="button" class="btn btn-primary add-discount visually-hidden" id="add-discount-btn"
              data-bs-toggle="modal" data-bs-target="#product_modal" data-id="P000001" data-name="Call of Duty"
              data-price="4500">Add
