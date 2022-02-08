@@ -11,14 +11,14 @@
      <td class="pButtons">
          {{#if this.productDiscounted}}
          <button type="button" class="btn btn-primary add-discount visually-hidden" id="add-discount-btn"
-             data-bs-toggle="modal" data-bs-target="#product_modal" data-id="P000001" data-name="Call of Duty"
-             data-price="4500">Add
+             data-bs-toggle="modal" data-bs-target="#product_modal" data-id="{{this.productId}}" data-name="{{this.productName}}"
+             data-price="{{this.productDisprice}}">Add
              Discount</button>
          <button type="button" class="btn btn-danger remove-discount" id="remove-discount-btn">Remove
              Discount</button>
          {{else}}
          <button type="button" class="btn btn-primary add-discount" id="add-discount-btn" data-bs-toggle="modal"
-             data-bs-target="#product_modal" data-id="P000001" data-name="Call of Duty" data-price="4500">Add
+             data-bs-target="#product_modal" data-id="{{this.productId}}" data-name="{{this.productName}}" data-price="{{this.productPrice}}">Add
              Discount</button>
          <button type="button" class="btn btn-danger remove-discount visually-hidden" id="remove-discount-btn">Remove
              Discount</button>
