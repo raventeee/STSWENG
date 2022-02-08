@@ -1,0 +1,16 @@
+<div class="col-12 col-md-6 col-lg-4">
+    <div class="card">
+        <img class ="card-img-top" src="{{this.productImages}}" alt="Call Of Duty: Black Ops Cold War">
+        <div class="card-body" id="{{this.productId}}">
+            {{#if this.productDiscounted}}
+                <h5 class="card-title text-decoration-line-through text-muted me-2" style="display: inline;">Php {{this.productPrice}}</h5>
+                <h5 class="card-title me-2" style="display: inline;">Php {{this.productDisprice}}</h5>
+                <p class="card-title text-white bg-danger fw-bold px-2" style="display: inline;">SALE</p>
+            {{else}}
+                <h5 class="card-title">Php {{this.productPrice}}</h5>
+            {{/if}}
+            <p class="card-text">{{this.productName}}</p>
+            <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
+        </div>
+    </div>
+</div>

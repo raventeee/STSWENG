@@ -94,7 +94,7 @@ const cartController = {
                     productName: element.productName,
                     productImages: element.productImages[0],
                     productCategory: element.productCategory,
-                    productPrice: element.productPrice,
+                    productPrice: element.productDiscounted ? element.productDisprice: element.productPrice, // if discounted: disprice else: normal price
                     productStock: element.productStock,
                     productDesc: element.productDesc,
                     productBrand: element.productBrand,
@@ -160,40 +160,29 @@ const cartController = {
       data.isLoggedIn = true
       db.getOne('Customers', email, function (result) {
         if (result !== null) {
-          const customerCart = result.customerCart;
-          const prodIds = customerCart.map((element) => { return element.productId });
-          // console.log(customerCart);
-          // console.log(prodIds);
-          let cartProducts = [];
-          db.getAll('Products', function (result) {
+          const customerTransactions = result.customerTransactions; // array of transactId
+          // console.log(customerTransactions);
+          let transaction = {};
+          db.getAll('Transactions', function (result) {
             if (result) {
-              // retrieves the products inside the cart
-              result.forEach((element) => {
-                if (prodIds.includes(element.productId)) {
-                  let item = {
-                    productName: element.productName,
-                    productImages: element.productImages[0],
-                    productCategory: element.productCategory,
-                    productPrice: element.productPrice,
-                    productStock: element.productStock,
-                    productDesc: element.productDesc,
-                    productBrand: element.productBrand,
-                    productId: element.productId
+              // retrieves the transactions
+              result.every((element) => {
+                if (customerTransactions.includes(element.transactId) && element.orderStatus == 'Payment Pending') {
+                  transaction = {
+                    finalProducts: element.finalProducts
                   };
-                  // iterates customerCart and inserts the qty in cart
-                  customerCart.every((elem) => {
-                    if (elem.productId == item.productId) {
-                      item.qty = elem.qty;
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  });
-                  cartProducts.push(item);
+                  data.orderStatus = element.orderStatus
+                  data.payment = element.payment
+                  data.totalTransactPrice = element.totalTransactPrice
+                  data.transactId = element.transactId
+                  return false; // stop iterating
+                } else {
+                  return true; // continue iterating
                 }
               });
-              console.log(cartProducts);
-              data.cartProducts = cartProducts;
+              console.log(transaction);
+              data.transaction = transaction
+              // TO CONTINUE
               res.render('orderstatus', data); // render the view
             } else {
               data.cartProducts = []
@@ -236,7 +225,7 @@ const cartController = {
                     productName: element.productName,
                     productImages: element.productImages[0],
                     productCategory: element.productCategory,
-                    productPrice: element.productPrice,
+                    productPrice: element.productDiscounted ? element.productDisprice: element.productPrice, // if discounted: disprice else: normal price
                     productStock: element.productStock,
                     productDesc: element.productDesc,
                     productBrand: element.productBrand,

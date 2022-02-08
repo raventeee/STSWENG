@@ -18,6 +18,26 @@ const hbsHelpers = {
       return null;
     }
     return parseFloat(price).toFixed(2);
+  },
+
+  isPaymentPending: function (status) {
+    return status == 'Payment Pending'
+  },
+
+  isPaymentSuccessful: function (status) {
+    return status == 'Payment Successful'
+  },
+
+  isToBeShipped: function (status) {
+    return status == 'To Be Shipped'
+  },
+
+  isOnTransit: function (status) {
+    return status == 'On Transit'
+  },
+
+  isDelivered: function (status) {
+    return status == 'Delivered'
   }
 }
 
