@@ -2,18 +2,18 @@
 <tr>
     <td class="tid">{{this.transactId}}</td>
     <td>
-        {{#each this.prodIds}}
-        <ul>{{this}}</ul>
+        {{#each this.finalProducts}}
+        <ul>{{this.productId}}</ul>
         {{/each}}
     </td>
     <td>
-        {{#each this.prodNames}}
-        <ul>{{this}}</ul>
+        {{#each this.finalProducts}}
+        <ul>{{this.productName}}</ul>
         {{/each}}
     </td>
     <td>
-        {{#each this.prodQuantities}}
-
+        {{#each this.finalProducts}}
+        <ul>{{this.quantity}}</ul>
         {{/each}}
     </td>
     <td>{{this.totalPrice}}</td>
