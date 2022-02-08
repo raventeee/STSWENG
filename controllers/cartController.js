@@ -170,7 +170,7 @@ const cartController = {
                 if (customerTransactions.includes(element.transactId)) {
                   let item = {
                     finalProducts: element.finalProducts,
-                    transactionHistory: element.transactionHistory,
+                    orderStatus: element.orderStatus,
                     payment: element.payment,
                     totalTransactPrice: element.totalTransactPrice,
                     transactId: element.transactId
@@ -348,7 +348,7 @@ const cartController = {
                const data = {
                  finalProducts: finalProducts,
                  totalTransactPrice: totalTransactPrice,
-                 transactionHistory: 'Payment Pending',
+                 orderStatus: 'Payment Pending',
                  payment: payment,
                  billing_address: billing_address,
                  billing_name: billing_name,
