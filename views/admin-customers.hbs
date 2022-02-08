@@ -4,13 +4,6 @@
         <a href="#" class="nav-link h3 text-white my-2">
             Jet's Game Store
         </a>
-        <a href="/admin-home" class="nav-link text-white">
-            <li>
-                <i class="bx bxs-dashboard"></i>
-                <span class="mx-2">Home</span>
-            </li>
-        </a>
-
         <a href="/admin-customers" class="nav-link text-white">
             <li>
                 <i class="bx bx-user-check"></i>
@@ -22,6 +15,13 @@
             <li>
                 <i class="bx bx-receipt"></i>
                 <span class="mx-2">Transactions</span>
+            </li>
+        </a>
+
+        <a href="/admin-products" class="nav-link text-white">
+            <li>
+                <i class='bx bxs-component'></i>
+                <span class="mx-2">Products</span>
             </li>
         </a>
 
@@ -39,7 +39,7 @@
     <!--End Top Nav -->
     <h1 class="h1 text-center">Transactions</h1>
     <div class="container-lg mb-2 my-5">
-        <table class="table table-fluid table-striped" id="transactions-table">
+        <table class="table table-fluid table-striped" id="customers-table">
             <thead class="table table-fluid">
                 <tr>
                     <th>Customer Id</th>
@@ -57,16 +57,7 @@
         </table>
     </div>
 
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 2500">
-        <div class="toast align-items-center visually-hidden" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Hello, world! This is a toast message.
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
+    {{>toasts-admin}}
 
 </div>
 
