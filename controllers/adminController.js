@@ -43,6 +43,35 @@ const adminController = {
     }
   },
 
+  getAdminCustomersPage: (req,res) =>{
+    const data = {
+      styles: ['style', 'sidebar'],
+      scripts: ['admin-customer-data-table', 'sidebar', 'toast'],
+      title: "Customers Page"
+    }
+
+    res.render('admin-customers',data)
+  },
+
+  getAdminTransactionsPage: (req,res) =>{
+    const data = {
+      styles: ['style', 'sidebar'],
+      scripts: ['admin-transaction-datatable', 'sidebar', 'dropdown', 'toast'],
+      title: "Transactions Page"
+    }
+
+    res.render('admin-transactions',data)
+  },
+
+  getAdminProductsPage: (req,res) =>{
+    const data = {
+      styles: ['style', 'sidebar'],
+      scripts: ['admin-product-datatable', 'sidebar', 'toast'],
+      title: "Products Page"
+    }
+    res.render('admin-products',data)
+  },
+
   /**
    * This function sends all customers
    * @param req - the incoming request containing either the query or body

@@ -25,6 +25,9 @@ app.get('/adminTransactions', adminController.getAllTransactions)
 app.get('/transactionhistory/:email', cartController.openTransactionHistory)
 app.get('/confirm_checkout', cartController.confirmCheckout)
 app.get('/checkout/:email', cartController.openCheckoutPage)
+app.get('/admin-customers', adminController.getAdminCustomersPage)
+app.get('/admin-transactions', adminController.getAdminTransactionsPage)
+app.get('/admin-products', adminController.getAdminProductsPage)
 
 
 // POST requests
