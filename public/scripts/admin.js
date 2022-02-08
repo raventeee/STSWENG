@@ -19,7 +19,8 @@ $(document).ready(function () {
         let customers = ""
         for (i = 0; i < result.length; i++)
         {
-            customers += result[i].customerFirstName + " " + result[i].customerLastName + "<br>"
+            
+            customers += result[i].customerFirstName + " " + result[i].customerLastName + "</br>"
         }
         $('#content').html("")
         $('#content').html(customers)
@@ -43,7 +44,6 @@ $(document).ready(function () {
                 products += `<section>`+ result[i].productName + " </section> <section>" + result[i].productPrice + `</section> 
                 <button class = "Dbutton" id = "`+ result[i].productId + `">`+discounted+`</button> <input placeholder="Discount Percent" type="text" id="`+result[i].productId+ `" class = "Dprice"> <br><br>`
             }
-            
         }
         $('#content').html("")
         $('#content').html(products)
@@ -54,12 +54,125 @@ $(document).ready(function () {
         let transactions = ""
         for (i = 0; i < result.length; i++)
         {
-            transactions += result[i].account_num + " " + result[i].account_name + " " + result[i].totalTransactPrice + "<br>"
+            transactions += result[i].account_num + " " + result[i].account_name + " " + result[i].totalTransactPrice + "<button class = 'Tbutton' id = '"+result[i].transactId+"'>Change Status</button>" +`
+            <select class="TSelect" id="`+result[i].transactId+`">`
+            if (result[i].orderStatus == "Payment Pending")
+            {
+                transactions +=`
+                <option value="Payment Pending" selected>Payment Pending</option>
+                <option value="Payment Successful">Payment Successful</option>
+                <option value="To Be Shipped">To Be Shipped</option>
+                <option value="On Transit">On Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                </select>`+"<br>"
+            }
+            else if(result[i].orderStatus == "Payment Successful")
+            {
+                transactions +=`
+                <option value="Payment Pending" >Payment Pending</option>
+                <option value="Payment Successful" selected>Payment Successful</option>
+                <option value="To Be Shipped">To Be Shipped</option>
+                <option value="On Transit">On Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                </select>`+"<br>"
+            }
+            else if(result[i].orderStatus == "To Be Shipped")
+            {
+                transactions +=`
+                <option value="Payment Pending" >Payment Pending</option>
+                <option value="Payment Successful" >Payment Successful</option>
+                <option value="To Be Shipped" selected >To Be Shipped</option>
+                <option value="On Transit">On Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                </select>`+"<br>"
+            }
+            else if(result[i].orderStatus == "On Transit")
+            {
+                transactions +=`
+                <option value="Payment Pending" >Payment Pending</option>
+                <option value="Payment Successful" >Payment Successful</option>
+                <option value="To Be Shipped"  >To Be Shipped</option>
+                <option value="On Transit" selected>On Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                </select>`+"<br>"
+            }
+            else if(result[i].orderStatus == "Delivered")
+            {
+                transactions +=`
+                <option value="Payment Pending" >Payment Pending</option>
+                <option value="Payment Successful" >Payment Successful</option>
+                <option value="To Be Shipped"  >To Be Shipped</option>
+                <option value="On Transit" >On Transit</option>
+                <option value="Delivered" selected>Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+                </select>`+"<br>"
+            }
+            else if(result[i].orderStatus == "Cancelled")
+            {
+                transactions +=`
+                <option value="Payment Pending">Payment Pending</option>
+                <option value="Payment Successful">Payment Successful</option>
+                <option value="To Be Shipped">To Be Shipped</option>
+                <option value="On Transit">On Transit</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled" selected>Cancelled</option>
+                </select>`+"<br>"
+            }
         }
         $('#content').html("")
         $('#content').html(transactions)
     }
 
+
+    $('#content').on('click', '.Tbutton', function () {
+        var transactId = $(this).attr('id')
+        var newStatus = $(this).next().val()
+        const data = {
+            transactId: transactId,
+            orderStatus: newStatus
+        }
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: '/updateStatus',
+            success:function(result)
+            {
+                if (result == true)
+                {
+                    $('#button3').click()
+                }
+            }
+        })
+        
+    })
+
+    $('#content').on('click', '.Dbutton', function () {
+        var product_id = $(this).attr('id')
+        var price = parseFloat($(this).prev().html())
+        var percent =parseFloat($(this).next().val())/100.0
+        var totalprice = (1.0-percent) * price
+        const data = {
+            productId: product_id,
+            productDisprice: totalprice,
+            productDiscounted: true
+        }
+        $.ajax({
+            type: 'POST',   
+            data: data,
+            url: '/postDiscountItem',
+            success:function(result)
+            {
+                if (result == true)
+                {
+                    $('#button2').click()
+                }
+            }
+        })
+    })
 
 
 
@@ -102,30 +215,6 @@ $(document).ready(function () {
         })
     })
 
-
-    $('#content').on('click', '.Dbutton', function () {
-        var product_id = $(this).attr('id')
-        var price = parseFloat($(this).prev().html())
-        var percent =parseFloat($(this).next().val())/100.0
-        var totalprice = (1.0-percent) * price
-        const data = {
-            productId: product_id,
-            productDisprice: totalprice,
-            productDiscounted: true
-        }
-        $.ajax({
-            type: 'POST',   
-            data: data,
-            url: '/postDiscountItem',
-            success:function(result)
-            {
-                if (result == true)
-                {
-                    $('#button2').click()
-                }
-            }
-        })
-    })
 
     $('#content').on('click', '.UDbutton', function () {
         var product_id = $(this).attr('id')

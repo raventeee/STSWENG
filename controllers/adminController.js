@@ -56,7 +56,7 @@ const adminController = {
   getAdminTransactionsPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-transaction-datatable', 'sidebar', 'dropdown', 'toast'],
+      scripts: ['admin-transaction-data-table', 'sidebar', 'dropdown', 'toast'],
       title: "Transactions Page"
     }
 
@@ -66,7 +66,7 @@ const adminController = {
   getAdminProductsPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-product-datatable', 'sidebar', 'toast'],
+      scripts: ['admin-product-data-table', 'sidebar', 'toast'],
       title: "Products Page"
     }
     res.render('admin-products',data)
@@ -116,6 +116,18 @@ const adminController = {
     data.productDiscounted = Boolean(data.productDiscounted)
     console.log(data)
     db.updateOne('Products',data.productId, data, function(result){
+      if (result !== null)
+      {
+        console.log(result)
+        res.send(result)
+      }
+    })
+  },
+  updateStatus: (req, res) => {
+    const data = req.body
+    console.log("HERE")
+    console.log(data.transactId)
+    db.updateOne('Transactions',data.transactId, data, function(result){
       if (result !== null)
       {
         console.log(result)
