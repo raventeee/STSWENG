@@ -208,9 +208,12 @@ const controller = {
     }
 
     db.getAll('Products', function (result) {
+      let temp = [
+        result[11]
+      ]
       let productsPC = []
 
-      result.forEach((element) => {
+      temp.forEach((element) => {
         let item = {
           productName: element.productName,
           productImages: element.productImages[0],
