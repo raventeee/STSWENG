@@ -25,6 +25,7 @@
             <option value="To Be Shipped">To Be Shipped</option>
             <option value="On Transit">On Transit</option>
             <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
         </select>
         {{else if (isPaymentSuccessful this.status)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
@@ -33,6 +34,7 @@
             <option value="To Be Shipped">To Be Shipped</option>
             <option value="On Transit">On Transit</option>
             <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
         </select>
 
         {{else if (isToBeShipped this.status)}}
@@ -42,6 +44,7 @@
             <option value="To Be Shipped" selected>To Be Shipped</option>
             <option value="On Transit">On Transit</option>
             <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
         </select>
 
         {{else if (isOnTransit this.status)}}
@@ -51,6 +54,16 @@
             <option value="To Be Shipped">To Be Shipped</option>
             <option value="On Transit" selected>On Transit</option>
             <option value="Delivered">Delivered</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+        {{else if (isDelivered this.status)}}
+        <select class="form-select form-select-sm drop" aria-label="Default select example">
+            <option value="Payment Pending">Payment Pending</option>
+            <option value="Payment Successful">Payment Successful</option>
+            <option value="To Be Shipped">To Be Shipped</option>
+            <option value="On Transit">On Transit</option>
+            <option value="Delivered" selected>Delivered</option>
+            <option value="Cancelled">Cancelled</option>
         </select>
         {{else}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
@@ -58,7 +71,8 @@
             <option value="Payment Successful">Payment Successful</option>
             <option value="To Be Shipped">To Be Shipped</option>
             <option value="On Transit">On Transit</option>
-            <option value="Delivered" selected>Delivered</option>
+            <option value="Delivered">Delivered</option>
+            <option value="Cancelled"selected>Cancelled</option>
         </select>
         {{/if}}
     </td>
