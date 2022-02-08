@@ -46,7 +46,7 @@ const adminController = {
   getAdminCustomersPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-customer-data-table', 'sidebar', 'toast'],
+      scripts: ['admin-customer-data-table', 'sidebar', 'admin-toast'],
       title: "Customers Page"
     }
     if (db.getAuth.currentUser != null) {
@@ -79,7 +79,7 @@ const adminController = {
   getAdminTransactionsPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-transaction-data-table', 'sidebar', 'dropdown', 'toast'],
+      scripts: ['admin-transaction-data-table', 'sidebar', 'dropdown', 'admin-toast'],
       title: "Transactions Page"
     }
 
@@ -115,7 +115,7 @@ const adminController = {
   getAdminProductsPage: (req,res) =>{
     const data = {
       styles: ['style', 'sidebar'],
-      scripts: ['admin-product-data-table', 'sidebar', 'toast'],
+      scripts: ['admin-product-data-table', 'sidebar', 'admin-toast'],
       title: "Products Page"
     }
     res.render('admin-products',data)
