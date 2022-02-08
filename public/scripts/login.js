@@ -51,7 +51,7 @@ $(document).ready(function () {
           }
           else if (result == '0')
           {
-            location.href = '/admin'
+            location.href = '/admin-customers'
           } else if (result == '2') { // Email error: auth/user-not-found
             $('#email_error').text('User account does not exist!')
             $('#input_email').val('')

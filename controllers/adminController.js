@@ -49,8 +49,31 @@ const adminController = {
       scripts: ['admin-customer-data-table', 'sidebar', 'toast'],
       title: "Customers Page"
     }
-
-    res.render('admin-customers',data)
+    if (db.getAuth.currentUser != null) {
+      const email = db.getAuth.currentUser.email
+      db.getAll('Admin', function (adminresult) {
+        let flag = false
+        if (adminresult !== null) {
+          let i = 0
+          while (!flag && (i < adminresult.length)) {
+            if (email === adminresult[i].customerEmail) {
+              flag = true
+            }
+            i++
+          }
+          if (flag) {
+            db.getAll('Customers', function (result) {
+              data.customers = result;
+              res.render('admin-customers',data);
+            });
+          } else {
+            res.redirect('/error');
+          }
+        }
+      })
+    } else {
+      res.redirect('/error')
+    }
   },
 
   getAdminTransactionsPage: (req,res) =>{
