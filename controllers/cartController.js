@@ -151,7 +151,7 @@ const cartController = {
     const data = {
       styles: ['style'],
       scripts: ['home'],
-      title: "Jet's Game Store - Order Status" // title of the web page
+      title: "Jet's Game Store - Transaction History" // title of the web page
     }
     if (db.getAuth.currentUser != null) {
       data.user = {
