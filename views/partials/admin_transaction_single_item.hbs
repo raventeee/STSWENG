@@ -18,7 +18,7 @@
     </td>
     <td>{{this.totalPrice}}</td>
     <td>
-        {{#if (isPaymentPending this.status)}}
+        {{#if (isPaymentPending this.orderStatus)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
             <option value="Payment Pending" selected>Payment Pending</option>
             <option value="Payment Successful">Payment Successful</option>
@@ -27,7 +27,7 @@
             <option value="Delivered">Delivered</option>
             <option value="Cancelled">Cancelled</option>
         </select>
-        {{else if (isPaymentSuccessful this.status)}}
+        {{else if (isPaymentSuccessful this.orderStatus)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
             <option value="Payment Pending">Payment Pending</option>
             <option value="Payment Successful" selected>Payment Successful</option>
@@ -37,7 +37,7 @@
             <option value="Cancelled">Cancelled</option>
         </select>
 
-        {{else if (isToBeShipped this.status)}}
+        {{else if (isToBeShipped this.orderStatus)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
             <option value="Payment Pending">Payment Pending</option>
             <option value="Payment Successful">Payment Successful</option>
@@ -47,7 +47,7 @@
             <option value="Cancelled">Cancelled</option>
         </select>
 
-        {{else if (isOnTransit this.status)}}
+        {{else if (isOnTransit this.orderStatus)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
             <option value="Payment Pending">Payment Pending</option>
             <option value="Payment Successful">Payment Successful</option>
@@ -56,7 +56,7 @@
             <option value="Delivered">Delivered</option>
             <option value="Cancelled">Cancelled</option>
         </select>
-        {{else if (isDelivered this.status)}}
+        {{else if (isDelivered this.orderStatus)}}
         <select class="form-select form-select-sm drop" aria-label="Default select example">
             <option value="Payment Pending">Payment Pending</option>
             <option value="Payment Successful">Payment Successful</option>

@@ -42,6 +42,10 @@ const hbsHelpers = {
 
   isDelivered: function (status) {
     return status == 'Delivered'
+  },
+
+  isCancelled: function (status) {
+    return status == 'Cancelled'
   }
 }
 
