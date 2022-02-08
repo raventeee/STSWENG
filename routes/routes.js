@@ -22,9 +22,12 @@ app.get('/xboxpage', controller.getXboxPage)
 app.get('/nswpage', controller.getNswPage)
 app.get('/pcmacpage', controller.getPcmacPage)
 app.get('/adminTransactions', adminController.getAllTransactions)
-app.get('/orderstatus/:email', cartController.openOrderStatus)
+app.get('/transactionhistory/:email', cartController.openTransactionHistory)
 app.get('/confirm_checkout', cartController.confirmCheckout)
 app.get('/checkout/:email', cartController.openCheckoutPage)
+app.get('/admin-customers', adminController.getAdminCustomersPage)
+app.get('/admin-transactions', adminController.getAdminTransactionsPage)
+app.get('/admin-products', adminController.getAdminProductsPage)
 
 
 // POST requests

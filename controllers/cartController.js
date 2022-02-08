@@ -94,7 +94,7 @@ const cartController = {
                     productName: element.productName,
                     productImages: element.productImages[0],
                     productCategory: element.productCategory,
-                    productPrice: element.productPrice,
+                    productPrice: element.productDiscounted ? element.productDisprice: element.productPrice, // if discounted: disprice else: normal price
                     productStock: element.productStock,
                     productDesc: element.productDesc,
                     productBrand: element.productBrand,
@@ -146,12 +146,12 @@ const cartController = {
    * @param req - the incoming request containing either the query or body
    * @param res - the result to be sent out after processing the request
    */
-  openOrderStatus: (req, res) => {
+  openTransactionHistory: (req, res) => {
     const email = req.params.email;
     const data = {
       styles: ['style'],
-      scripts: ['home', 'cart'],
-      title: "Jet's Game Store - Order Status" // title of the web page
+      scripts: ['home'],
+      title: "Jet's Game Store - Transaction History" // title of the web page
     }
     if (db.getAuth.currentUser != null) {
       data.user = {
@@ -160,43 +160,30 @@ const cartController = {
       data.isLoggedIn = true
       db.getOne('Customers', email, function (result) {
         if (result !== null) {
-          const customerCart = result.customerCart;
-          const prodIds = customerCart.map((element) => { return element.productId });
-          // console.log(customerCart);
-          // console.log(prodIds);
-          let cartProducts = [];
-          db.getAll('Products', function (result) {
+          const customerTransactions = result.customerTransactions; // array of transactId
+          // console.log(customerTransactions);
+          let transactions = [];
+          db.getAll('Transactions', function (result) {
             if (result) {
-              // retrieves the products inside the cart
+              // retrieves the transactions
               result.forEach((element) => {
-                if (prodIds.includes(element.productId)) {
+                if (customerTransactions.includes(element.transactId)) {
                   let item = {
-                    productName: element.productName,
-                    productImages: element.productImages[0],
-                    productCategory: element.productCategory,
-                    productPrice: element.productPrice,
-                    productStock: element.productStock,
-                    productDesc: element.productDesc,
-                    productBrand: element.productBrand,
-                    productId: element.productId
-                  };
-                  // iterates customerCart and inserts the qty in cart
-                  customerCart.every((elem) => {
-                    if (elem.productId == item.productId) {
-                      item.qty = elem.qty;
-                      return false;
-                    } else {
-                      return true;
-                    }
-                  });
-                  cartProducts.push(item);
+                    finalProducts: element.finalProducts,
+                    orderStatus: element.orderStatus,
+                    payment: element.payment,
+                    totalTransactPrice: element.totalTransactPrice,
+                    transactId: element.transactId
+                  }
+                  transactions.push(item)
                 }
               });
-              console.log(cartProducts);
-              data.cartProducts = cartProducts;
-              res.render('orderstatus', data); // render the view
+              
+              data.transactions = transactions
+              console.log(data)
+              res.render('transactionhistory', data)
             } else {
-              data.cartProducts = []
+              data.transactProducts = []
             }
           });
         }
@@ -236,7 +223,7 @@ const cartController = {
                     productName: element.productName,
                     productImages: element.productImages[0],
                     productCategory: element.productCategory,
-                    productPrice: element.productPrice,
+                    productPrice: element.productDiscounted ? element.productDisprice: element.productPrice, // if discounted: disprice else: normal price
                     productStock: element.productStock,
                     productDesc: element.productDesc,
                     productBrand: element.productBrand,
@@ -312,7 +299,7 @@ const cartController = {
           let finalProducts = []
           let totalTransactPrice = 0 // overall total price of this transaction
           // update the customerAddress and empty the customerCart
-          db.updateOne('Customers', current_email, { customerAddress: billing_address, customerCart: [] }, function (result) {
+        db.updateOne('Customers', current_email, { customerAddress: billing_address, customerCart: []/*, isOrdered: true*/ }, function (result) {
             if (result != null && result != undefined) {
              // update all the product stocks
              db.getAll('Products', function (result) {
@@ -325,12 +312,14 @@ const cartController = {
                   
                   // add to finalProducts array
                   if (element.productDiscounted == true) {
-                    let tempPrice = element.productPrice - element.productDisprice
+                    let tempPrice = element.productDisprice
                     let tempProduct = {
                       price: tempPrice,
                       productId: element.productId,
-                      quantity: customerCart.qty,
-                      totalPrice: tempPrice * customerCart[i].qty
+                      quantity: customerCart[i].qty,
+                      totalPrice: tempPrice * customerCart[i].qty,
+                      productName: element.productName,
+                      productImages: element.productImages[0]
                     }
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
@@ -342,7 +331,9 @@ const cartController = {
                       price: element.productPrice,
                       productId: element.productId,
                       quantity: customerCart[i].qty,
-                      totalPrice: element.productPrice * customerCart[i].qty
+                      totalPrice: element.productPrice * customerCart[i].qty,
+                      productName: element.productName,
+                      productImages: element.productImages[0]
                     }
 
                     totalTransactPrice += tempProduct.totalPrice // add to the overall total price of this transaction
@@ -377,6 +368,7 @@ const cartController = {
                   data.transactId = size
                   customerTransactions.push(data.transactId)
                   // update customerTransaction
+                  console.log(data)
                   db.updateOne('Customers', current_email, { customerTransactions: customerTransactions }, function (res) {})
                   db.insert('Transactions', size, data, function (result) {
                     if (result !== null) {
@@ -399,6 +391,14 @@ const cartController = {
       res.render('error')
     }
   },
+
+  /** This function opens the check out page with cart
+   * @param req - the incoming request containing either the query or body
+   * @param res - the result to be sent out after processing the request
+   */
+  openTransactHistory: (req, res) => {
+
+  }
 }
 
 module.exports = cartController

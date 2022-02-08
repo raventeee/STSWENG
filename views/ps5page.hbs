@@ -25,72 +25,9 @@
             <div class="container">
               <div class="row g-3">
 
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/cod_black_ops_cold_war.jpg" alt="Call Of Duty: Black Ops Cold War">
-                      {{!-- change id={{productId}} when rendering an item from database later on --}}
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Call Of Duty: Black Ops Cold War</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/the_show_21.jpg" alt="MLB The Show 21">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">MLB The Show 21</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/far_cry_6.jpg" alt="Far Cry 6">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Far Cry 6</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" id="000000">
-                      <img class ="card-img-top" src="/assets/Metroid_Dread.png" alt="Metroid™ Dread">
-                      <div class="card-body">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Metroid™ Dread</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" id="000000">
-                      <img class ="card-img-top" src="/assets/hitman_3.jpg" alt="Hitman 3">
-                      <div class="card-body">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Hitman 3</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card" id="000000">
-                      <img class ="card-img-top" src="/assets/Forza_Horizon_5.jpg" alt="Forza Horizon 5">
-                      <div class="card-body">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Forza Horizon 5</p>
-                        <button class="add_cart btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
+                  {{#each productsPS5}}
+                    {{>home_single_item this}}
+                  {{/each}}
       
               </div>
           </div>
@@ -98,86 +35,6 @@
     </section>
     <!-- FEATURED GAMES END -->
 
-    <!-- LATEST RELEASES START -->
-    <div class="text-center mt-5 mb-4">
-        <h2>New Releases</h2>
-    </div>
-    <section id="new-releases">
-        <div class="container-large">
-            <div class="container">
-              <div class="row g-3">
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/Halo_Infinite.jpg" alt="Halo Infinite">
-                      <div class="card-body">
-                        <h5 class="card-title" id="000000">Php 1500</h5>
-                        <p class="card-text">Halo Infinite</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/NBA-2k22.jpg" alt="NBA-2k22">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">NBA 2K22</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/Back4Blood.jpg" alt="Back4Blood Ultimate Edition">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Back 4 Blood Ultimate Edition</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/resident_evil_village_ps4_ps5.jpg" alt="Resident Evil Village">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Resident Evil Village</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-      
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/deathloop.jpg" alt="Deathloop">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Deathloop</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                      <img class ="card-img-top" src="/assets/Battlefield_2042.jpg" alt="Battlefield 2042">
-                      <div class="card-body" id="000000">
-                        <h5 class="card-title">Php 1500</h5>
-                        <p class="card-text">Battlefield 2042</p>
-                        <button class="btn btn-outline-danger btn-lg w-100 mt-3">Add to Cart</button>
-                      </div>
-                    </div>
-                  </div>
-  
-              </div>
-  
-            </div>
-          </div>
-    </section>
-    <!-- LATEST RELEASES END -->
 
     <!-- FAQ START -->
     <h1 id="FAQ" class="text-center mt-5">Frequently Asked Questions</h1>

@@ -1,0 +1,39 @@
+{{!-- MAIIBA COMPLETELY COS UNG LAMAN NETO DAPAT UNG NA CHECK OUT NA NA ORDER, FOR TEMPLATE LANG KAYA GINAYA KO UNG CART - CARL --}}
+{{!-- Pending changes:
+        1. Status must be from db (sinet ng admin)
+        2. Mode of payment must be from db (sinelect nung check out) --}}
+
+
+<!--Toasts-->
+{{>toasts}}
+
+<!-- NAVBAR START -->
+{{>navbar user}}  
+    
+{{!-- SEARCH MODAL --}}
+{{> searchmodal}}
+
+{{!-- LOGIN MODAL --}}
+{{>login}}
+
+{{!-- REGISTER MODAL --}}
+{{>register}}
+
+{{!-- CART SUCCESS MODAL --}}
+{{> cart_success}}
+
+
+<div class="container-lg mx-auto my-auto">
+    <div class="row">
+        <div class="container-large text-center my-4">
+            <h2>Transaction History</h2>
+        </div>
+        
+        {{> transactionhistory_item}}
+    </div>
+</div>
+
+
+<!-- FOOTER START -->
+{{>footer isLoggedIn}}
+<!-- FOOTER END -->

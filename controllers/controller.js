@@ -10,7 +10,7 @@ const controller = {
   getPs5Page: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['addCart', 'home', 'register', 'login'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -22,7 +22,31 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('ps5page', data)
+
+    db.getAll('Products', function (result) {
+      let temp = [
+        result[0], result[2], result[7], result[9], result[10]
+      ]
+      let productsPS5 = []
+
+      temp.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        productsPS5.push(item)
+      })
+      data.productsPS5 = productsPS5;
+      res.render('ps5page', data)
+    });
   },
 
   /**
@@ -33,7 +57,7 @@ const controller = {
   getPs4Page: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['addCart', 'home', 'register', 'login'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -45,13 +69,37 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('ps4page', data)
+    
+    db.getAll('Products', function (result) {
+      let temp = [
+        result[1], result[4]
+      ]
+      let productsPS4 = []
+
+      temp.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        productsPS4.push(item)
+      })
+      data.productsPS4 = productsPS4;
+      res.render('ps4page', data)
+    });
   },
 
   getXboxPage: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['addCart', 'home', 'register', 'login'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -63,7 +111,31 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('xboxpage', data)
+    
+    db.getAll('Products', function (result) {
+      let temp = [
+        result[5], result[6], result[8]
+      ]
+      let productsXBOX = []
+
+      temp.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        productsXBOX.push(item)
+      })
+      data.productsXBOX = productsXBOX;
+      res.render('xboxpage', data)
+    });
   },
 
   /**
@@ -74,7 +146,7 @@ const controller = {
   getNswPage: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['addCart', 'home', 'register', 'login'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -86,7 +158,31 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('nswpage', data)
+    
+    db.getAll('Products', function (result) {
+      let temp = [
+        result[3]
+      ]
+      let productsNSW = []
+
+      temp.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        productsNSW.push(item)
+      })
+      data.productsNSW = productsNSW;
+      res.render('nswpage', data)
+    });
   },
 
   
@@ -98,7 +194,7 @@ const controller = {
   getPcmacPage: (req, res) => {
     const data = {
       styles: ['style'],
-      scripts: ['addCart', 'home', 'register', 'login', 'toast'],
+      scripts: ['addCart', 'home', 'register', 'login'],
       title: "Jet's Game Store" // title of the web page
     }
     // checks session, if there is a current logged-in user
@@ -110,7 +206,31 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('pcmacpage', data)
+
+    db.getAll('Products', function (result) {
+      let temp = [
+        result[11]
+      ]
+      let productsPC = []
+
+      temp.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        productsPC.push(item)
+      })
+      data.productsPC = productsPC;
+      res.render('pcmacpage', data)
+    });
   },
 
   /**
@@ -133,7 +253,48 @@ const controller = {
     } else {
       data.isLogged = { loggedIn: false, loggedOut: true } // logged out
     }
-    res.render('home', data)
+
+    db.getAll('Products', function (result) {
+      let allProducts1 = []
+      let allProducts2 = []
+      let featured = result.slice(0, 6) // featured products
+      let releases = result.slice(6,) // new releases products
+      
+      featured.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        allProducts1.push(item)
+      });
+
+      releases.forEach((element) => {
+        let item = {
+          productName: element.productName,
+          productImages: element.productImages[0],
+          productCategory: element.productCategory,
+          productPrice: element.productPrice,
+          productStock: element.productStock,
+          productDesc: element.productDesc,
+          productBrand: element.productBrand,
+          productId: element.productId,
+          productDiscounted: element.productDiscounted,
+          productDisprice: element.productDisprice
+        };
+        allProducts2.push(item)
+      });
+      data.allProducts1 = allProducts1
+      data.allProducts2 = allProducts2
+      res.render('home', data)
+    });
   },
 
   /**
@@ -161,6 +322,7 @@ const controller = {
         user[customer.gender] = req.body.gender
         user[customer.cart] = []
         user[customer.transactions] = []
+        user.isOrdered = false
         // insert customer to Customers collection
         db.insert('Customers', email, user, function (result) {
           if (result) {

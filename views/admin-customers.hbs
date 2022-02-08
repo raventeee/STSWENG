@@ -39,22 +39,19 @@
     <!--End Top Nav -->
     <h1 class="h1 text-center">Transactions</h1>
     <div class="container-lg mb-2 my-5">
-        <table class="table table-fluid table-striped" id="transactions-table">
+        <table class="table table-fluid table-striped" id="customers-table">
             <thead class="table table-fluid">
                 <tr>
-                    <th>Transaction Id</th>
-                    <th>Product Id</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Status</th>
+                    <th>Customer Id</th>
+                    <th>Customer Email</th>
+                    <th>Customer Name</th>
                 </tr>
             </thead>
 
             <tbody>
                 <!--Insert Entries here-->
-                {{#each transactions}}
-                {{>admin_transaction_single_item this}}
+                {{#each customers}}
+                {{>admin_customer_single_item this}}
                 {{/each}}
             </tbody>
         </table>

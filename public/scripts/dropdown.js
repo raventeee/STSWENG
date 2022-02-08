@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    $('#transactions-table').DataTable();
-
     $(".drop").change(function(){
         $(".drop").prop('disabled', true)
         console.log( $(this).parent().siblings(".tid").text());
