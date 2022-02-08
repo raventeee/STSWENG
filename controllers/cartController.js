@@ -146,7 +146,7 @@ const cartController = {
    * @param req - the incoming request containing either the query or body
    * @param res - the result to be sent out after processing the request
    */
-  openOrderStatus: (req, res) => {
+  openTransactionHistory: (req, res) => {
     const email = req.params.email;
     const data = {
       styles: ['style'],
@@ -170,7 +170,7 @@ const cartController = {
                 if (customerTransactions.includes(element.transactId)) {
                   let item = {
                     finalProducts: element.finalProducts,
-                    orderStatus: element.orderStatus,
+                    transactionHistory: element.transactionHistory,
                     payment: element.payment,
                     totalTransactPrice: element.totalTransactPrice,
                     transactId: element.transactId
@@ -181,7 +181,7 @@ const cartController = {
               
               data.transactions = transactions
               console.log(data)
-              res.render('orderstatus', data)
+              res.render('transactionhistory', data)
             } else {
               data.transactProducts = []
             }
@@ -348,7 +348,7 @@ const cartController = {
                const data = {
                  finalProducts: finalProducts,
                  totalTransactPrice: totalTransactPrice,
-                 orderStatus: 'Payment Pending',
+                 transactionHistory: 'Payment Pending',
                  payment: payment,
                  billing_address: billing_address,
                  billing_name: billing_name,
