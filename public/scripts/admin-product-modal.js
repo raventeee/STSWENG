@@ -9,7 +9,10 @@ $(document).ready(function () {
 
     $('.remove-discount').click(function () {
         $(this).addClass('visually-hidden');
-        $(this).siblwings('.add-discount').removeClass('visually-hidden');
+        $(this).siblings('.add-discount').removeClass('visually-hidden');
+        //Put message in toast box (successful/fail)
+        $('#toast-body').html('Discount Removed!')
+        showToast();
         
     });
 
@@ -20,6 +23,9 @@ $(document).ready(function () {
         $(element).children(".pButtons").children('.add-discount').addClass('visually-hidden');
         $(element).children(".pButtons").children('.remove-discount').removeClass('visually-hidden');
         $(element).children(".pPrice").html(price)
+        //Put message in toast box (successful/fail)
+        $('#toast-body').html('Discount Implemented!')
+        showToast();
 
     });
 
